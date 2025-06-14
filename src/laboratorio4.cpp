@@ -1,10 +1,11 @@
 #include <iostream>
-#include <string>
+
+#include "presentacion/MenuPpal.h"
 
 using namespace std;
 
 int main() {
-  cout << "HOLA MUNDO!";
-
+  MenuPpal menu;
+  menu.mostrarMenu();
   return 0;
 }

@@ -24,7 +24,7 @@ void Sistema::inicializarDatos() {
   //inicializo los idiomas del sistema
 
 
-  cout << "Comienza inicializacion Sistema " << endl;
+  // cout << "Comienza inicializacion Sistema " << endl;
 
 //  Idioma *idioma1 = new Idioma("Ingles");
 //  Idioma *idioma2 = new Idioma("Espaniol");
@@ -38,7 +38,7 @@ void Sistema::inicializarDatos() {
 //  Usuario *usr1 = new Estudiante("pp","pass1","nombre1","desc1","pais1");
 //  this->usuarios.insert(usr1);
 
-  cout << "Fin inicializacion Sistema " << endl;
+  // cout << "Fin inicializacion Sistema " << endl;
 }
 
 //Idioma* Sistema::buscarIdioma(string nomIdioma) {
