@@ -1,26 +1,21 @@
-//
-// Created by walte on 14/06/2025.
-//
 
 #include "MenuPpal.h"
+#include "AltaProducto.h"
+#include "ListarProductos.h"
 #include <iostream>
 
 using namespace std;
 
-MenuPpal::MenuPpal() {
+MenuPpal::MenuPpal() = default;
 
-}
-
-MenuPpal::~MenuPpal() {
-  // TODO Auto-generated destructor stub
-}
+MenuPpal::~MenuPpal() = default;
 
 void MenuPpal::mostrarMenu() {
   int op = 0;
   do {
     cout << "*** Menu principal ***" << endl;
-    cout <<"1) Alta Usuario" << endl;
-    cout <<"2) Realizar Ejercicio " << endl;
+    cout <<"1) Alta Producto" << endl;
+    cout <<"2) Listar Productos" << endl;
     cout <<"0) Salir " << endl;
     cout <<"Ingrese una opcion: " << endl;
 
@@ -29,14 +24,14 @@ void MenuPpal::mostrarMenu() {
       case 0:
         break;
       case 1: {
-        // AltaUsuario altaUsuario;
-        // altaUsuario.altaUsuario();
+        AltaProducto altaProducto;
+        altaProducto.altaProducto();
       }
       break;
       case 2:
       {
-        // RealizarEjercicio realizarEjercicio;
-        // realizarEjercicio.realizarEjercicio();
+        ListarProductos listarProductos;
+        listarProductos.listarProductos();
       }
       break;
       default:

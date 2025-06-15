@@ -5,8 +5,8 @@
 //#include "../dominio/Usuario.h"
 //#include "../dominio/Estudiante.h"
 //#include "../dominio/Profesor.h"
-//#include "../dominio/Idioma.h"
-///
+#include "../dominio/Producto.h"
+
 
 using namespace std;
 
@@ -14,21 +14,18 @@ using namespace std;
 
 class Sistema {
 private:
-  Sistema(); //declaro el constructor como privado
-  static Sistema* miSistema;	//puntero a la unica intancia de Sistema
+  Sistema();
+  static Sistema* miSistema;
   void inicializarDatos();
+
 public:
   //Esta es una clase utilitaria por lo que no tiene sentido encapsular su estado
   //(no utilizo getters y setters)
 
-  ///
-//  set<Usuario*> usuarios;
-//  set<Idioma*> idiomas;
-//
-//  Idioma* buscarIdioma(string nomIdioma);
-  ///
   static Sistema* getInstance(); //metodo de clase que devuele siempre la misma instancia
   virtual ~Sistema();
+
+  set<Producto*> productos;
 };
 
 #endif /* NEGOCIO_CONTROLLER_SISTEMA_CPP_ */
