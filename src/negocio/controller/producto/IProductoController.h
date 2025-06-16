@@ -16,6 +16,10 @@ public:
 
   bool verificarCodigo(string codigo);
   void agregarProducto(DTOProducto *producto);
+  set<string> listarProductos();
+  DTOProducto* obtenerInfoProducto(string nombreProd);
+
+  // TODO: borrar este metodo porque no es un CU
   set<DTOProducto*> obtenerProductos();
 };
 

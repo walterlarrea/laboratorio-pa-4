@@ -10,6 +10,8 @@ class IProducto {
     virtual bool verificarCodigo(string codigo)=0;
     virtual void agregarProducto(DTOProducto* producto)=0;
     virtual set<DTOProducto*> obtenerProductos()=0;
+    virtual set<string> listarProductos()=0;
+    virtual DTOProducto* obtenerInfoProducto(string nombreProd)=0;
 };
 
 

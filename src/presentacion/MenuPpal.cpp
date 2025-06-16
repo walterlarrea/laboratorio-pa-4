@@ -1,8 +1,10 @@
 
 #include "MenuPpal.h"
+#include <iostream>
 #include "AltaProducto.h"
 #include "ListarProductos.h"
-#include <iostream>
+
+#include "ConsultarProducto.h"
 
 using namespace std;
 
@@ -16,6 +18,7 @@ void MenuPpal::mostrarMenu() {
     cout << "*** Menu principal ***" << endl;
     cout <<"1) Alta Producto" << endl;
     cout <<"2) Listar Productos" << endl;
+    cout <<"3) Consultar Producto" << endl;
     cout <<"0) Salir " << endl;
     cout <<"Ingrese una opcion: " << endl;
 
@@ -28,10 +31,14 @@ void MenuPpal::mostrarMenu() {
         altaProducto.altaProducto();
       }
       break;
-      case 2:
-      {
+      case 2: {
         ListarProductos listarProductos;
         listarProductos.listarProductos();
+      }
+      break;
+      case 3: {
+        ConsultarProducto consultarProducto;
+        consultarProducto.consultarProducto();
       }
       break;
       default:

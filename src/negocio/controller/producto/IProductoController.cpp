@@ -48,3 +48,24 @@ set<DTOProducto*> IProductoController::obtenerProductos() {
 
   return productos;
 }
+
+set<string> IProductoController::listarProductos() {
+  set<string> nombreProductos;
+
+  map<string, Producto*>::iterator it;
+
+  for (it = this->sistema->productos.begin(); it != this->sistema->productos.end(); ++it) {
+    nombreProductos.insert((*it).second->getNombre());
+  }
+
+  return nombreProductos;
+}
+
+DTOProducto* IProductoController::obtenerInfoProducto(string nombreProd) {
+  Producto* producto = this->sistema->productos.at(nombreProd);
+
+  return new DTOProducto(
+    producto->getCodigo(), producto->getStock(), producto->getPrecio(),
+    producto->getNombre(), producto->getDescripcion(), producto->getCategoria()
+    );
+}
