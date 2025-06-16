@@ -1,10 +1,7 @@
 #ifndef NEGOCIO_CONTROLLER_SISTEMA_CPP_
 #define NEGOCIO_CONTROLLER_SISTEMA_CPP_
 #include <set>
-///
-//#include "../dominio/Usuario.h"
-//#include "../dominio/Estudiante.h"
-//#include "../dominio/Profesor.h"
+
 #include "../dominio/Producto.h"
 
 
@@ -25,7 +22,7 @@ public:
   static Sistema* getInstance(); //metodo de clase que devuele siempre la misma instancia
   virtual ~Sistema();
 
-  set<Producto*> productos;
+  map<string, Producto*> productos; // TODO: Usar maps
 };
 
 #endif /* NEGOCIO_CONTROLLER_SISTEMA_CPP_ */

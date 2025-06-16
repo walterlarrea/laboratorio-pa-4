@@ -10,10 +10,10 @@ IProductoController::IProductoController() {
 bool IProductoController::verificarCodigo(string codigo) {
   bool result = false;
 
-  set<Producto*>::iterator it;
+  map<string, Producto*>::iterator it;
 
   for (it = this->sistema->productos.begin(); it != this->sistema->productos.end(); ++it) {
-    if (codigo == (*it)->getCodigo()) {
+    if (codigo == (*it).second->getCodigo()) {
       result = true;
       break;
     }
@@ -28,20 +28,21 @@ void IProductoController::agregarProducto(DTOProducto* producto) {
   if (producto != nullptr) {
     nuevoProducto = new Producto(producto->getCodigo(), producto->getStock(), producto->getPrecio(),
       producto->getNombre(), producto->getDescripcion(), producto->getCategoria());
-  }
 
-  this->sistema->productos.insert(nuevoProducto);
+  // this->sistema->productos[producto->getNombre()] = nuevoProducto;
+  this->sistema->productos.insert(make_pair(producto->getNombre(), nuevoProducto));
+  }
 }
 
 set<DTOProducto*> IProductoController::obtenerProductos() {
   set<DTOProducto*> productos;
 
-  set<Producto*>::iterator it;
+  map<string, Producto*>::iterator it;
 
   for (it = this->sistema->productos.begin(); it != this->sistema->productos.end(); ++it) {
     productos.insert(new DTOProducto(
-        (*it)->getCodigo(), (*it)->getStock(), (*it)->getPrecio(),
-        (*it)->getNombre(), (*it)->getDescripcion(), (*it)->getCategoria()
+        (*it).second->getCodigo(), (*it).second->getStock(), (*it).second->getPrecio(),
+        (*it).second->getNombre(), (*it).second->getDescripcion(), (*it).second->getCategoria()
         ));
   }
 

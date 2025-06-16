@@ -1,6 +1,5 @@
 
 #include "Producto.h"
-#include <format>
 
 Producto::Producto() {}
 
@@ -36,8 +35,3 @@ ECatProducto* Producto::getCategoria() {
   return this->categoria;
 }
 
-string Producto::toString() {
-  return "" + this->codigo + " - " + this->nombre + " - " + this->descripcion +
-    " - " + to_string(this->stock) + " - " + format("{:.2f}", this->precio) +
-    " - " + this->categoria->getNombre();
-}

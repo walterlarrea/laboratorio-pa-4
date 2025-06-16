@@ -3,7 +3,9 @@
 //
 
 #include "DTOProducto.h"
+#include <format>
 #include <iostream>
+
 using namespace std;
 
 DTOProducto::DTOProducto() {}
@@ -38,6 +40,12 @@ string DTOProducto::getDescripcion() {
 }
 ECatProducto* DTOProducto::getCategoria() {
   return this->categoria;
+}
+
+string DTOProducto::toString() {
+  return "" + this->codigo + " - " + this->nombre + " - " + this->descripcion +
+    " - " + to_string(this->stock) + " - " + format("{:.2f}", this->precio) +
+    " - " + this->categoria->getNombre();
 }
 
 DTOProducto::~DTOProducto() {}

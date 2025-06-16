@@ -6,13 +6,11 @@
 AltaProducto::AltaProducto() {
   //TODO pendiente de usar una fabrica
   this->iproducto = new IProductoController();
-  // this->listarCategoriasProd = new ListarCategoriasProd();
 }
 
 AltaProducto::~AltaProducto() {
   //El controlador solo dura lo que dura el caso de uso
   delete this->iproducto;
-  // delete this->listarCategoriasProd;
 }
 
 void AltaProducto::altaProducto() {
@@ -53,10 +51,6 @@ DTOProducto* AltaProducto::ingresarProducto(string codigo) {
   map<int, string>* categorias = ECatProducto::getCategorias();
   do {
     cout << "Ingresar numero de categoria:" << endl;
-
-    // this->listarCategoriasProd->listarCategoriasProd();
-    // El metodo anterior sirve para evitar repeticion de codigo.
-    // Solo si necesitaramos mostrar la lista de categorias mas de una vez.
 
     map<int, string>::iterator it;
     for (it = categorias->begin(); it != categorias->end(); ++it) {

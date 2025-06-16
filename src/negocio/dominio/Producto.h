@@ -27,8 +27,6 @@ public:
   string getDescripcion();
   ECatProducto* getCategoria();
 
-  string toString();
-
   ~Producto();
 };
 

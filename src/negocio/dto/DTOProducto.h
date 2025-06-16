@@ -32,6 +32,8 @@ public:
   string getDescripcion();
   ECatProducto* getCategoria();
 
+  string toString();
+
   virtual ~DTOProducto();
 };
 

@@ -18,12 +18,11 @@ void ListarProductos::listarProductos() {
 
   set<DTOProducto*>::iterator it;
   for (it = productos.begin(); it != productos.end(); ++it) {
-    Producto* producto = new Producto(
-      (*it)->getCodigo(), (*it)->getStock(), (*it)->getPrecio(),
-      (*it)->getNombre(), (*it)->getDescripcion(), (*it)->getCategoria()
-    );
-    cout << producto->toString() << endl;
-    delete producto;
+    // Producto* producto = new Producto(
+    //   (*it)->getCodigo(), (*it)->getStock(), (*it)->getPrecio(),
+    //   (*it)->getNombre(), (*it)->getDescripcion(), (*it)->getCategoria()
+    // );
+    cout << (*it)->toString() << endl;
   }
   } else {
     cout << "No existen productos en el sistema." << endl << endl;
