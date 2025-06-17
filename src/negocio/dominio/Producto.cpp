@@ -35,3 +35,24 @@ ECatProducto* Producto::getCategoria() {
   return this->categoria;
 }
 
+
+// TODO: Para implementar .....
+
+string Producto::getNickVendedor() {
+
+}
+map<string, Comentario*> Producto::getComentarios() {
+
+}
+
+void Producto::setVendedor(Vendedor* v) {
+
+}
+bool Producto::vendedorIgualA(string nickVend) {
+
+}
+void Producto::disminuirStock(int cantidad) {
+
+}
+
+
