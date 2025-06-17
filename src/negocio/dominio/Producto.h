@@ -7,6 +7,7 @@
 #include "Comentario.h"
 
 class Vendedor;
+class Comentario;
 
 using namespace std;
 

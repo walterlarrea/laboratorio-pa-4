@@ -11,6 +11,8 @@
 
 using namespace std;
 
+class Comentario;
+
 class Cliente : public Usuario{
 private:
     DTDireccion* direccion;
