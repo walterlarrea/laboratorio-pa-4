@@ -21,15 +21,15 @@ DTDireccion *Cliente::getDireccion() {
 }
 // TODO: Implementar...
 map<string, Comentario*> Cliente::getComentarios() {
-
+  return this->comentarios;
 }
 void Cliente::eliminarComentario(Comentario* comentario) {
-
+  this->comentarios.erase(comentario->getTexto());
 }
 void Cliente::agregarCompra(Compra* compra) {
 
 }
 void Cliente::agregarComentario(Comentario* comentario) {
-
+  this->comentarios.insert(pair(comentario->getTexto(), comentario));
 }
 

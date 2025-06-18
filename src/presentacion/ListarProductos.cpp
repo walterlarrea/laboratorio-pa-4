@@ -2,8 +2,13 @@
 #include "ListarProductos.h"
 #include "../negocio/controller/producto/IProductoController.h"
 
+#include<iostream>
+
+using namespace std;
+
 ListarProductos::ListarProductos() {
-  this->iproducto = new IProductoController();
+  void* sesion = &sesion;
+  this->iproducto = new IProductoController(sesion);
 };
 
 ListarProductos::~ListarProductos() {

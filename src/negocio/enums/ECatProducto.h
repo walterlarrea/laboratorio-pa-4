@@ -22,6 +22,7 @@ public:
   int getValor();
   void setValor(int valor);
   string getNombre();
+  string toString();
 
   static bool verificarCategoria(int valor);
   static string getNombre(int valor);

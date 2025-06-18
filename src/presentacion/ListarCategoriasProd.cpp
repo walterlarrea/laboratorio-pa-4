@@ -1,6 +1,11 @@
 
 #include "ListarCategoriasProd.h"
+#include "../negocio/controller/producto/IProducto.h"
+#include "../negocio/enums/ECatProducto.h"
 
+#include<iostream>
+
+using namespace std;
 
 ListarCategoriasProd::ListarCategoriasProd() = default;
 

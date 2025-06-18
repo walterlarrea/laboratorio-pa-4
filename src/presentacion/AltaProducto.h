@@ -5,9 +5,8 @@
 #ifndef ALTAPRODUCTO_H
 #define ALTAPRODUCTO_H
 
-#include "../negocio/controller/producto/IProductoController.h"
 #include "../negocio/controller/producto/IProducto.h"
-// #include "ListarCategoriasProd.h"
+
 
 
 class AltaProducto {

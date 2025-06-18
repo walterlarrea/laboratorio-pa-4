@@ -10,7 +10,8 @@
 using namespace std;
 
 AltaUsuario::AltaUsuario() {
-    this->iusuario = new IUsuarioController();
+    void* sesion = &sesion;
+    this->iusuario = new IUsuarioController(sesion);
 }
 
 AltaUsuario::~AltaUsuario() {

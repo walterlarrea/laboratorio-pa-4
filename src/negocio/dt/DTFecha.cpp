@@ -1,18 +1,15 @@
 #include "DTFecha.h"
 
-DTFecha::DTFecha() {
-
-}
+DTFecha::DTFecha() {}
 
 DTFecha::DTFecha(int dia, int mes, int anio) {
-    this->dia = dia;
-    this->mes = mes;
-    this->anio = anio;
+  this->dia = dia;
+  this->mes = mes;
+  this->anio = anio;
 }
 
-DTFecha::~DTFecha() {
+DTFecha::~DTFecha() {}
 
-}
-std::string DTFecha::toString() const {
-    return std::to_string(dia) + "/" + std::to_string(mes) + "/" + std::to_string(anio);
+string DTFecha::toString() {
+  return "" + to_string(this->dia) + "/" + to_string(this->mes) + "/" + to_string(this->anio);
 }

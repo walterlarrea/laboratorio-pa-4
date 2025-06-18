@@ -1,6 +1,3 @@
-//
-// Created by walte on 14/06/2025.
-//
 
 #include "DTOProducto.h"
 #include <format>
@@ -45,7 +42,7 @@ ECatProducto* DTOProducto::getCategoria() {
 string DTOProducto::toString() {
   return "" + this->codigo + " - " + this->nombre + " - " + this->descripcion +
     " - " + to_string(this->stock) + " - " + format("{:.2f}", this->precio) +
-    " - " + this->categoria->getNombre();
+    " - " + this->categoria->toString();
 }
 
 DTOProducto::~DTOProducto() {}

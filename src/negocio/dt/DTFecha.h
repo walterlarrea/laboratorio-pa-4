@@ -1,18 +1,23 @@
 #ifndef DTFECHA_H
 #define DTFECHA_H
 
-#include <string>
+#include<string>
+
+using namespace std;
 
 class DTFecha {
 private:
-    int dia, mes, anio;
-    public:
-    DTFecha();
-    DTFecha(int dia, int mes, int anio);
-    ~DTFecha();
-    std::string toString() const;
-};
+  int dia;
+  int mes;
+  int anio;
+public:
 
+  DTFecha();
+  DTFecha(int dia, int mes, int anio);
+  ~DTFecha();
+
+  string toString();
+};
 
 
 

@@ -1,11 +1,15 @@
 
 #include "AltaProducto.h"
 
+#include "../negocio//controller/producto/IProductoController.h"
 #include "../negocio/enums/ECatProducto.h"
+#include<iostream>
+
+using namespace std;
 
 AltaProducto::AltaProducto() {
-  //TODO pendiente de usar una fabrica
-  this->iproducto = new IProductoController();
+  void* sesion = &sesion;
+  this->iproducto = new IProductoController(sesion);
 }
 
 AltaProducto::~AltaProducto() {
@@ -66,11 +70,9 @@ DTOProducto* AltaProducto::ingresarProducto(string codigo) {
   } while (!ECatProducto::verificarCategoria(cat));
   // TODO: Dar posibilidad de cancelar el proceso de alta?
 
-  ECatProducto* categoria = new ECatProducto(cat);
-
   DTOProducto* nuevoProducto = new DTOProducto(
       codigo, stock, precio,
-      nombre, descr, categoria
+      nombre, descr, new ECatProducto(cat)
       );
 
   return nuevoProducto;

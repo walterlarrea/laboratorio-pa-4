@@ -22,6 +22,8 @@ map<int, string>* ECatProducto::getCategorias() {
   return categorias;
 }
 
+// Meteodos de instancia
+
 ECatProducto::ECatProducto() = default;
 
 ECatProducto::ECatProducto(int valor) {
@@ -35,6 +37,13 @@ void ECatProducto::setValor(int valor){
   this->valor = valor;
 }
 string ECatProducto::getNombre(){
+  if(categorias->contains(this->valor)){
+    return categorias->at(this->valor);
+  }
+  return ""; // TODO: Podria devolver nullptr
+}
+
+string ECatProducto::toString(){
   if(categorias->contains(this->valor)){
     return categorias->at(this->valor);
   }
