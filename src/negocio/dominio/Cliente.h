@@ -24,6 +24,8 @@ public:
     Cliente();
     Cliente(string nickname, string password, DTFecha* fechaNacimiento, DTDireccion* direccion, string ciudadResidencia);
 
+    DTDireccion* getDireccion();
+    string getCiudad();
     map<string, Comentario*> getComentarios();
 
     void eliminarComentario(Comentario* comentario);

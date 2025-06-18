@@ -23,6 +23,7 @@ public:
   virtual ~Sistema();
 
   map<string, Producto*> productos; // TODO: Usar maps
+  map<string, Usuario*> usuarios;
 };
 
 #endif /* NEGOCIO_CONTROLLER_SISTEMA_CPP_ */

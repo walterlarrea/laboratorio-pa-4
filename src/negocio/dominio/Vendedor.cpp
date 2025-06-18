@@ -11,6 +11,10 @@ Vendedor::~Vendedor() {
 
 }
 
+string Vendedor::getRut() {
+    return this->rut;
+}
+
 // TODO: Implementar ....
 
 void Vendedor::addProducto(Producto *producto) {

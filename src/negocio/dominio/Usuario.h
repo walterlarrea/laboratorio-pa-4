@@ -8,7 +8,7 @@ using namespace std;
 
 class Usuario {
 
-private:
+protected:
     string nickName;
     string password;
     DTFecha *fechaNacimiento;
@@ -16,7 +16,9 @@ public:
     Usuario();
     Usuario(string nickName, string password, DTFecha* fechaNacimiento);
 
-    string getNickName();
+    string getNickName() const;
+    string getPassword() const;
+    DTFecha* getFechaNacimiento() const;
 
     virtual ~Usuario();
 };
