@@ -16,6 +16,7 @@ public:
     Vendedor();
     Vendedor(string nickName, string password, DTFecha *fechaNacimiento, string rut);
 
+    string getRut();
     void addProducto(Producto* producto);
     map<string,Producto*> getProductos();
 

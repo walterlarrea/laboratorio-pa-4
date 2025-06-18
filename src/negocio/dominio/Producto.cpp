@@ -37,7 +37,7 @@ ECatProducto* Producto::getCategoria() {
 
 
 // TODO: Para implementar .....
-
+/*
 string Producto::getNickVendedor() {
 
 }
@@ -54,5 +54,5 @@ bool Producto::vendedorIgualA(string nickVend) {
 void Producto::disminuirStock(int cantidad) {
 
 }
-
+*/
 
