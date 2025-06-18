@@ -13,6 +13,12 @@ Cliente::~Cliente() {
 
 }
 
+string Cliente::getCiudad() {
+    return this->ciudadResidencia;
+}
+DTDireccion *Cliente::getDireccion() {
+    return this->direccion;
+}
 // TODO: Implementar...
 map<string, Comentario*> Cliente::getComentarios() {
 
