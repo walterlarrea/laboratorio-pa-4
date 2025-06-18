@@ -2,17 +2,18 @@
 #include "../../dto/DTOProducto.h"
 #include "../../dominio/Producto.h"
 
-IProductoController::IProductoController() = default;
+IProductoController::IProductoController() {
+  this->sistema = Sistema::getInstance();
+}
 IProductoController::IProductoController(void* idSesion) {
   this->sistema = Sistema::getInstance();
   if (idSesion != nullptr) {
-    MemoriaTemporal::getInstance();
-    this->memoria = MemoriaTemporal::getInstance()->darSesion(idSesion);
+    this->memoria = MemoriaTemporal::darSesion(idSesion);
   }
 }
 IProductoController::~IProductoController() {
   if (this->memoria != nullptr) {
-    MemoriaTemporal::getInstance()->terminarSesion(this->memoria);
+    MemoriaTemporal::terminarSesion(this->memoria);
   }
 }
 

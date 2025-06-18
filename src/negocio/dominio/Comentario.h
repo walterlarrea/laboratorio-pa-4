@@ -23,11 +23,24 @@ private:
 
 public:
     Comentario();
-    Comentario(string texto, DTFecha* fecha);
+    Comentario(string texto, DTFecha* fecha, Cliente* cliente, Producto* producto);
+    ~Comentario(); // Sería el eliminarComentario()
+
     // getInfoComentario ?? TODO
     void eliminarRespuestas();
     void agregarRespuesta(Comentario* respuesta);
-    ~Comentario(); // Sería el eliminarComentario()
+
+  string getTexto();
+  DTFecha* getFecha();
+  Cliente* getCliente();
+  Producto* getProducto();
+  set<Comentario*> getRespuestas();
+
+  void setTexto(string texto);
+  void setFecha(DTFecha* fecha);
+  void setCliente(Cliente* cliente);
+  void setProducto(Producto* producto);
+  void setRespuestas(set<Comentario*> respuestas);
 };
 
 

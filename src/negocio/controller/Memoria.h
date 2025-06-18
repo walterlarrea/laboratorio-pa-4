@@ -20,20 +20,21 @@ private:
   static MemoriaTemporal* miMemoriaTemporal;
   static map<void*, pair<Memoria*, int>> sesiones;
 
-  Memoria* agregarSesion(void* sesion);
+  static Memoria* agregarSesion(void* sesion);
 public:
 
   virtual ~MemoriaTemporal();
-  static MemoriaTemporal* getInstance(); //metodo de clase que devuele siempre la misma instancia
+  // static MemoriaTemporal* getInstance(); // Deprecado - metodo de clase que devuele siempre la misma instancia
 
-  Memoria* darSesion(void* sesion);
-  void terminarSesion(void* sesion);
+  static Memoria* darSesion(void* sesion); // Funcion que devuelve una memoria para una sesion. Crea la instancia si no existe
+  static void terminarSesion(void* sesion);
 };
 
 class Memoria {
 private:
-  string nombreConsumidor; // Nombre consumidor nunca es expuesto
-
+  // Si usaramos el IOrderedDictionary el estado podria ser un solo map.
+  // Pero como no lo usamos, todo lo que necesitemos guardar en memoria
+  // tiene que agregarse como propiedad de Memoria.
   Usuario* usuario;
   Cliente* cliente;
   Vendedor* vendedor;

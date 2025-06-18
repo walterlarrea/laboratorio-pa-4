@@ -7,7 +7,8 @@
 #include <iostream>
 
 ListarUsuarios::ListarUsuarios() {
-    this->iusuario = new IUsuarioController();
+    void* sesion = &sesion;
+    this->iusuario = new IUsuarioController(sesion);
 };
 
 ListarUsuarios::~ListarUsuarios() {

@@ -1,12 +1,14 @@
 
 #include "MenuPpal.h"
 #include <iostream>
-#include "AltaProducto.h"
 #include "AltaUsuario.h"
-#include "ListarProductos.h"
 #include "ListarUsuarios.h"
 
+#include "AltaProducto.h"
+#include "ListarProductos.h"
 #include "ConsultarProducto.h"
+
+#include "EliminarComentario.h"
 
 using namespace std;
 
@@ -18,13 +20,14 @@ void MenuPpal::mostrarMenu() {
   int op = 0;
   do {
     cout << "*** Menu principal ***" << endl;
-    cout <<"1) Alta Producto" << endl;
-    cout <<"2) Listar Productos" << endl;
-    cout <<"3) Consultar Producto" << endl;
+    cout << "1) Alta Producto" << endl;
+    cout << "2) Listar Productos" << endl;
+    cout << "3) Consultar Producto" << endl;
     cout << "4) Alta Usuario" << endl;
     cout << "5) Listar Usuarios" << endl;
-    cout <<"0) Salir " << endl;
-    cout <<"Ingrese una opcion: " << endl;
+    cout << "6) Eliminar Comentario" << endl;
+    cout << "0) Salir " << endl;
+    cout << "Ingrese una opcion: " << endl;
 
 
     cin >> op;
@@ -54,6 +57,11 @@ void MenuPpal::mostrarMenu() {
       case 5: {
         ListarUsuarios listarUsuarios;
         listarUsuarios.listarUsuarios();
+      }
+      break;
+        case 6: {
+        EliminarComentario eliminarComentario;
+        eliminarComentario.eliminarComentario();
       }
       break;
 

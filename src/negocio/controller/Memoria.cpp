@@ -7,15 +7,18 @@ MemoriaTemporal::MemoriaTemporal() = default;
 MemoriaTemporal::~MemoriaTemporal() = default;
 
 
-MemoriaTemporal* MemoriaTemporal::getInstance() {
+// MemoriaTemporal* MemoriaTemporal::getInstance() {
+//   if (miMemoriaTemporal==nullptr){
+//     miMemoriaTemporal = new MemoriaTemporal();
+//   }
+//
+//   return miMemoriaTemporal;
+// }
+
+Memoria* MemoriaTemporal::darSesion(void* sesion) {
   if (miMemoriaTemporal==nullptr){
     miMemoriaTemporal = new MemoriaTemporal();
   }
-
-  return miMemoriaTemporal;
-}
-
-Memoria* MemoriaTemporal::darSesion(void* sesion) {
   Memoria* memSesion = agregarSesion(sesion);
 
   return memSesion;

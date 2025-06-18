@@ -5,10 +5,11 @@
 #ifndef IUSUARIO_H
 #define IUSUARIO_H
 
-#include <string>
 #include <set>
-#include "../../dto/DTOUsuario.h"
+#include <string>
 #include "../../dt/DTFecha.h"
+#include "../../dto/DTOComentario.h"
+#include "../../dto/DTOUsuario.h"
 
 using namespace std;
 
@@ -17,6 +18,9 @@ public:
     virtual bool verificarNickname(string nick)=0;
     virtual void altaUsuario(DTOUsuario* u)=0;
     virtual set<DTOUsuario*> listarUsuarios()=0;
+    virtual set<string> getClientesNick()=0;
+    virtual set<DTOComentario*> getComentariosCliente(string nickCliente)=0;
+    virtual void eliminarComentario(string com)=0;
 
 };
 

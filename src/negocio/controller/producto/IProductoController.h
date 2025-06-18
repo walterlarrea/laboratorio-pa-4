@@ -12,10 +12,9 @@ private:
   Sistema* sistema; //cada controlador de la aplicación tiene una instancia de la clase sistema
   //solo existe una instancia de la clase sistema en toda la aplicacion
   Memoria* memoria;
-  IProductoController();
-
 public:
-  explicit IProductoController(void* sessionId);
+  IProductoController();
+  explicit IProductoController(void* idSesion);
   ~IProductoController();
 
   bool verificarCodigo(string codigo);

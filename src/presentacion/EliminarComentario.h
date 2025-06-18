@@ -2,11 +2,13 @@
 #ifndef ELIMINARCOMENTARIO_H
 #define ELIMINARCOMENTARIO_H
 
-#include "../negocio/controller/producto/IProducto.h"
+// #include "../negocio/controller/producto/IProducto.h"
+#include "../negocio/controller/usuario/IUsuario.h"
 
 class EliminarComentario {
 private:
-  IProducto* iproducto;
+  // IProducto* iproducto;
+  IUsuario* iusuario;
 
 public:
   EliminarComentario();

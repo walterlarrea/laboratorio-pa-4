@@ -22,11 +22,18 @@ class IUsuarioController : public IUsuario {
 private:
     Sistema* sistema; //cada controlador de la aplicación tiene una instancia de la clase sistema
     //solo existe una instancia de la clase sistema en toda la aplicacion
+    Memoria* memoria;
 public:
     IUsuarioController();
+    explicit IUsuarioController(void* idSesion);
+    ~IUsuarioController();
+
     bool verificarNickname(string nick);
     virtual void altaUsuario(DTOUsuario* u);
     virtual set<DTOUsuario*> listarUsuarios();
+    virtual set<string> getClientesNick();
+    virtual set<DTOComentario*> getComentariosCliente(string nickCliente);
+    virtual void eliminarComentario(string com);
 
 };
 
