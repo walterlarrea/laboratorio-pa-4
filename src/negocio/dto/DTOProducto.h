@@ -1,12 +1,9 @@
-//
-// Created by walte on 14/06/2025.
-//
 
 #ifndef DTOPRODUCTO_H
 #define DTOPRODUCTO_H
 
-#include <iostream>
-#include"../enums/ECatProducto.h"
+#include "../enums/ECatProducto.h"
+#include<string>
 
 using namespace std;
 

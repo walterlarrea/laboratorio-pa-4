@@ -2,10 +2,20 @@
 #include "../../dto/DTOProducto.h"
 #include "../../dominio/Producto.h"
 
-
-IProductoController::IProductoController() {
+IProductoController::IProductoController() = default;
+IProductoController::IProductoController(void* idSesion) {
   this->sistema = Sistema::getInstance();
+  if (idSesion != nullptr) {
+    MemoriaTemporal::getInstance();
+    this->memoria = MemoriaTemporal::getInstance()->darSesion(idSesion);
+  }
 }
+IProductoController::~IProductoController() {
+  if (this->memoria != nullptr) {
+    MemoriaTemporal::getInstance()->terminarSesion(this->memoria);
+  }
+}
+
 
 bool IProductoController::verificarCodigo(string codigo) {
   bool result = false;
@@ -13,7 +23,7 @@ bool IProductoController::verificarCodigo(string codigo) {
   map<string, Producto*>::iterator it;
 
   for (it = this->sistema->productos.begin(); it != this->sistema->productos.end(); ++it) {
-    if (codigo == (*it).second->getCodigo()) {
+    if (codigo == it->second->getCodigo()) {
       result = true;
       break;
     }
@@ -23,10 +33,10 @@ bool IProductoController::verificarCodigo(string codigo) {
 }
 
 void IProductoController::agregarProducto(DTOProducto* producto) {
-  Producto *nuevoProducto;
 
   if (producto != nullptr) {
-    nuevoProducto = new Producto(producto->getCodigo(), producto->getStock(), producto->getPrecio(),
+    Producto* nuevoProducto = new Producto(
+      producto->getCodigo(), producto->getStock(), producto->getPrecio(),
       producto->getNombre(), producto->getDescripcion(), producto->getCategoria());
 
   // this->sistema->productos[producto->getNombre()] = nuevoProducto;

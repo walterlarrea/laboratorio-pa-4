@@ -1,27 +1,23 @@
 #include "Sistema.h"
 
-
 Sistema* Sistema::miSistema=nullptr;
 
-Sistema::Sistema() {}
+Sistema::Sistema() = default;
 
-Sistema::~Sistema() {
-  // TODO Auto-generated destructor stub
-}
+Sistema::~Sistema() = default;
 
 Sistema* Sistema::getInstance() {
-  if (Sistema::miSistema==nullptr){
-    Sistema::miSistema = new Sistema();
-    Sistema::miSistema->inicializarDatos();
+  if (miSistema==nullptr){
+    // Se inicia una instancia de memoria para el sistema
+    miSistema = new Sistema();
+    miSistema->inicializarDatos();
   }
-  return Sistema::miSistema;
 
+  return miSistema;
 }
 
 void Sistema::inicializarDatos() {
   //inicializo el sistema
-
-
   // cout << "Comienza inicializacion Sistema " << endl;
 
   // Crear instancias y agregarlas a listas globales

@@ -3,6 +3,7 @@
 #include <set>
 
 #include "../dominio/Producto.h"
+#include "Memoria.h"
 
 
 using namespace std;
@@ -22,7 +23,7 @@ public:
   static Sistema* getInstance(); //metodo de clase que devuele siempre la misma instancia
   virtual ~Sistema();
 
-  map<string, Producto*> productos; // TODO: Usar maps
+  map<string, Producto*> productos;
 };
 
 #endif /* NEGOCIO_CONTROLLER_SISTEMA_CPP_ */

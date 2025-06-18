@@ -2,8 +2,13 @@
 #include "ConsultarProducto.h"
 #include "../negocio/controller/producto/IProductoController.h"
 
+#include<iostream>
+
+using namespace std;
+
 ConsultarProducto::ConsultarProducto() {
-  this->iproducto = new IProductoController();
+  void* sesion = &sesion;
+  this->iproducto = new IProductoController(sesion);
 }
 
 ConsultarProducto::~ConsultarProducto() {
@@ -13,7 +18,7 @@ ConsultarProducto::~ConsultarProducto() {
 void ConsultarProducto::consultarProducto() {
   set<string> nombreProductos = this->iproducto->listarProductos();
 
-  if (nombreProductos.size() > 0){
+  if (!nombreProductos.empty()){
     cout << "Estos son todos los productos en el sistema:" << endl << endl;
 
     set<string>::iterator it;

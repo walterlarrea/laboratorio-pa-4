@@ -1,6 +1,3 @@
-//
-// Created by walter on 14/06/2025.
-//
 
 #ifndef MENUPPAL_H
 #define MENUPPAL_H
