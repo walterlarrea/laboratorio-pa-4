@@ -1,6 +1,7 @@
 
 #ifndef PROMOCION_H
 #define PROMOCION_H
+#include <list>
 #include <map>
 #include <string>
 
@@ -16,7 +17,7 @@ private:
   string descripcion;
   double descuento;
   DTFecha* fechaVencimiento;
-  map<string,ProdPromo*> prodPromo;
+  list<ProdPromo*> prodPromos;
 
 public:
   Promocion();
@@ -27,6 +28,7 @@ public:
   string getDescripcion();
   double getDescuento();
   DTFecha* getFechaVencimiento();
+  void addProdPromo(int cantMinima, Producto* prod);
 };
 
 

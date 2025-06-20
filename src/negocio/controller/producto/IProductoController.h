@@ -18,7 +18,7 @@ public:
   ~IProductoController();
 
   bool verificarCodigo(string codigo);
-  void agregarProducto(DTOProducto *producto);
+  void agregarProducto(DTOProducto *producto, string vendedor);
   set<string> listarProductos();
   DTOProducto* obtenerInfoProducto(string nombreProd);
 

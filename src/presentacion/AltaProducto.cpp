@@ -1,39 +1,76 @@
 
 #include "AltaProducto.h"
 
+#include <iostream>
 #include "../negocio//controller/producto/IProductoController.h"
 #include "../negocio/enums/ECatProducto.h"
-#include<iostream>
+
+#include "../negocio/controller/usuario/IUsuarioController.h"
 
 using namespace std;
 
 AltaProducto::AltaProducto() {
   void* sesion = &sesion;
   this->iproducto = new IProductoController(sesion);
+  this->iusuario = new IUsuarioController(sesion);
 }
 
 AltaProducto::~AltaProducto() {
   //El controlador solo dura lo que dura el caso de uso
   delete this->iproducto;
+  delete this->iusuario;
 }
 
 void AltaProducto::altaProducto() {
 
-  string codigo;
-  cout << "Ingrese codigo:"<< endl;
-  cin >> codigo;
+  string vendedor = ingresarVendedor();
 
-  bool existe = this->iproducto->verificarCodigo(codigo);
-  if (!existe) {
-    DTOProducto *nuevoProducto = ingresarProducto(codigo);
+  if (!vendedor.empty()) {
+    string codigo;
+    cout << "Ingrese codigo:"<< endl;
+    cin >> codigo;
 
-    this->iproducto->agregarProducto(nuevoProducto);
+    bool existe = this->iproducto->verificarCodigo(codigo);
+    if (!existe) {
+      DTOProducto *nuevoProducto = ingresarProducto(codigo);
 
-    cout << "Fin ingreso de producto " << endl;
+      this->iproducto->agregarProducto(nuevoProducto, vendedor);
 
-  } else  {
-    cout << "Ya existe el producto. Imposible continuar..." << endl;
+      cout << "Fin ingreso de producto " << endl;
+
+    } else  {
+      cout << "Ya existe el producto. Imposible continuar..." << endl;
+    }
+  } else {
+    cout << "No hay vendedores en el sistema." << endl;
   }
+
+}
+
+string AltaProducto::ingresarVendedor() {
+  set<string> nombreVendedores = this->iusuario->getVendedoresNick();
+
+  string retorno = "";
+
+  if (nombreVendedores.empty()) {
+    return retorno; // Se termina si no hay vendedores
+  }
+
+  cout << "Lista de vendedores:";
+  for (string nombre : nombreVendedores) {
+    cout << nombre << endl;
+  }
+
+  while (retorno != "") {
+    cout << "Ingrese el nombre de vendedor: ";
+    cin >> retorno;
+    if (!nombreVendedores.contains(retorno)) {
+      cout << "Nombre incorrecto"<< endl;
+      retorno = "";
+    }
+  }
+
+  return retorno;
 }
 
 DTOProducto* AltaProducto::ingresarProducto(string codigo) {
@@ -77,3 +114,4 @@ DTOProducto* AltaProducto::ingresarProducto(string codigo) {
 
   return nuevoProducto;
 }
+

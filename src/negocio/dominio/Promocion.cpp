@@ -28,3 +28,10 @@ double Promocion::getDescuento() {
 DTFecha* Promocion::getFechaVencimiento() {
    return fechaVencimiento;
  }
+
+void Promocion::addProdPromo(int cantMinima, Producto *prod) {
+   if (cantMinima > 0 & prod != nullptr) {
+     ProdPromo * prodPromo = new ProdPromo(cantMinima, prod);
+     this->prodPromos.push_back(prodPromo);
+   }
+ }

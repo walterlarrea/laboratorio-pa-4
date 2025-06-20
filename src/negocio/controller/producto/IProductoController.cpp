@@ -33,12 +33,18 @@ bool IProductoController::verificarCodigo(string codigo) {
   return result;
 }
 
-void IProductoController::agregarProducto(DTOProducto* producto) {
+void IProductoController::agregarProducto(DTOProducto* producto, string vendedor) {
 
-  if (producto != nullptr) {
+  if (producto != nullptr && vendedor != "") {
     Producto* nuevoProducto = new Producto(
       producto->getCodigo(), producto->getStock(), producto->getPrecio(),
       producto->getNombre(), producto->getDescripcion(), producto->getCategoria());
+
+    Vendedor* v = dynamic_cast<Vendedor*>(this->sistema->usuarios.find(vendedor)->second);
+
+    nuevoProducto->setVendedor(v);
+
+    v->addProducto(nuevoProducto);
 
   // this->sistema->productos[producto->getNombre()] = nuevoProducto;
   this->sistema->productos.insert(make_pair(producto->getNombre(), nuevoProducto));

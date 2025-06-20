@@ -35,6 +35,10 @@ ECatProducto* Producto::getCategoria() {
   return this->categoria;
 }
 
+void Producto::setVendedor(Vendedor* v) {
+  this->vendedor = v;
+}
+
 
 // TODO: Para implementar .....
 /*
@@ -45,9 +49,7 @@ map<string, Comentario*> Producto::getComentarios() {
 
 }
 
-void Producto::setVendedor(Vendedor* v) {
 
-}
 bool Producto::vendedorIgualA(string nickVend) {
 
 }

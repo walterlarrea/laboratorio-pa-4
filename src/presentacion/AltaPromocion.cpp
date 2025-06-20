@@ -20,7 +20,7 @@ void AltaPromocion::altaPromocion() {
   set<string> nombreVendedores = this->iusuario->getClientesNick();
 
   cout << "--- Alta de Promocion ---" << endl;
-  cout << "Lista de vendedores para la promocion:";
+  cout << "Lista de vendedores:";
 
   for (string nombre : nombreVendedores) {
     cout << nombre << endl;
