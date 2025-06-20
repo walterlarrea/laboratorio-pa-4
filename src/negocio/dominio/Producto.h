@@ -33,7 +33,7 @@ public:
   string getNombre();
   string getDescripcion();
   ECatProducto* getCategoria();
-  string getNickVendedor();
+  Vendedor* getVendedor();
   map<string, Comentario*> getComentarios();
 
   void setVendedor(Vendedor* v);

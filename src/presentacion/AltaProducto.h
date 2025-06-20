@@ -15,8 +15,8 @@ private:
   IUsuario* iusuario;
   // ListarCategoriasProd* listarCategoriasProd;
 
-	DTOProducto* ingresarProducto(string codigo, string vendedor);
-  string ingresarVendedor();
+	DTOProducto* ingresarProducto(string codigo, DTOVendedor* vendedor);
+  DTOVendedor* ingresarVendedor();
 
 public:
   AltaProducto();

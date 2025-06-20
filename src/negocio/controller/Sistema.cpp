@@ -24,6 +24,7 @@ void Sistema::inicializarDatos() {
 
   // Crear instancias y agregarlas a listas globales
   Producto* prod1 = new Producto("124", 20, 139.99, "Bidon 6L Salus", "Agua mineral riquisima", new ECatProducto(2));
+
   Usuario* usuario1 = new Cliente(
     "walter", "walter",
     new DTFecha(20, 10, 2003),

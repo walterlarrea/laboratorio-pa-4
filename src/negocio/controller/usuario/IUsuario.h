@@ -21,6 +21,7 @@ public:
     virtual set<DTOUsuario*> listarUsuarios()=0;
     virtual set<string> getClientesNick()=0;
     virtual set<string> getVendedoresNick()=0;
+    virtual DTOVendedor* getVendedor(string nickVendedor) = 0;
     virtual set<DTOProducto*> getProdVendedor(string vendedor)=0;
     virtual set<DTOComentario*> getComentariosCliente(string nickCliente)=0;
     virtual void eliminarComentario(string com)=0;

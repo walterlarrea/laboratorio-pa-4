@@ -18,13 +18,16 @@ private:
   string nombre;
   string descripcion;
   ECatProducto* categoria;
-  string vendedor;
+  DTOVendedor* vendedor;
 
 public:
   DTOProducto();
   DTOProducto(
       string codigo, int stock, double precio,
-      string nombre, string descripcion, ECatProducto* categoria, string nickVendedor);
+      string nombre, string descripcion, ECatProducto* categoria);
+  DTOProducto(
+      string codigo, int stock, double precio,
+      string nombre, string descripcion, ECatProducto* categoria, DTOVendedor* vendedor);
 
   string getCodigo();
   int getStock();
@@ -32,7 +35,7 @@ public:
   string getNombre();
   string getDescripcion();
   ECatProducto* getCategoria();
-  string getNickVendedor();
+  DTOVendedor* getVendedor();
 
   string toString();
 

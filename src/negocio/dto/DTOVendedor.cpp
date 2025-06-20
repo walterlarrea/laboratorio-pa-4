@@ -19,6 +19,12 @@ string DTOVendedor::getRut() {
     return this->rut;
 }
 
+/*
+map<string,DTOProducto*> DTOVendedor::getProductos() {
+  return this->productos;
+}
+
+*/
 
 std::string DTOVendedor::toString() const {
     return "Vendedor - Nick: " + this->nickName +

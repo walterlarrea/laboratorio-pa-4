@@ -18,7 +18,9 @@ string Vendedor::getRut() {
 // TODO: Implementar ....
 
 void Vendedor::addProducto(Producto *producto) {
-
+  if (producto != nullptr) {
+    this->productos.insert(make_pair(producto->getNombre(), producto));
+  }
 }
 
 map<string,Producto*> Vendedor::getProductos() {

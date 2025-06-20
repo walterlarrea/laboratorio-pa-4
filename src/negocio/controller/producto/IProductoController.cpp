@@ -40,14 +40,15 @@ void IProductoController::agregarProducto(DTOProducto* producto) {
       producto->getCodigo(), producto->getStock(), producto->getPrecio(),
       producto->getNombre(), producto->getDescripcion(), producto->getCategoria());
 
-    Vendedor* v = dynamic_cast<Vendedor*>(this->sistema->usuarios.find(producto->getNickVendedor())->second);
+    string nickVendedor = producto->getVendedor()->getNickName();
+    Usuario* u = this->sistema->usuarios.find(nickVendedor)->second;
+    Vendedor* v = dynamic_cast<Vendedor*>(u);
 
     nuevoProducto->setVendedor(v);
-
     v->addProducto(nuevoProducto);
 
-  // this->sistema->productos[producto->getNombre()] = nuevoProducto;
-  this->sistema->productos.insert(make_pair(producto->getNombre(), nuevoProducto));
+    // this->sistema->productos[producto->getNombre()] = nuevoProducto;
+    this->sistema->productos.insert(make_pair(producto->getNombre(), nuevoProducto));
   }
 }
 
@@ -59,7 +60,7 @@ set<DTOProducto*> IProductoController::obtenerProductos() {
   for (it = this->sistema->productos.begin(); it != this->sistema->productos.end(); ++it) {
     productos.insert(new DTOProducto(
         (*it).second->getCodigo(), (*it).second->getStock(), (*it).second->getPrecio(),
-        (*it).second->getNombre(), (*it).second->getDescripcion(), (*it).second->getCategoria(), (*it).second->getNickVendedor()
+        (*it).second->getNombre(), (*it).second->getDescripcion(), (*it).second->getCategoria()
         ));
   }
 
@@ -81,8 +82,12 @@ set<string> IProductoController::listarProductos() {
 DTOProducto* IProductoController::obtenerInfoProducto(string nombreProd) {
   Producto* producto = this->sistema->productos.at(nombreProd);
 
+  Vendedor* v = producto->getVendedor();
+
+  DTOVendedor* vendedor = new DTOVendedor(v->getNickName(), v->getPassword(), v->getFechaNacimiento(), v->getRut());
+
   return new DTOProducto(
     producto->getCodigo(), producto->getStock(), producto->getPrecio(),
-    producto->getNombre(), producto->getDescripcion(), producto->getCategoria(), producto->getNickVendedor()
+    producto->getNombre(), producto->getDescripcion(), producto->getCategoria(), vendedor
     );
 }

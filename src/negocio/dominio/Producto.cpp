@@ -39,8 +39,8 @@ void Producto::setVendedor(Vendedor* v) {
   this->vendedor = v;
 }
 
-string Producto::getNickVendedor() {
-  return this->vendedor->getNickName();
+Vendedor* Producto::getVendedor() {
+  return this->vendedor;
 }
 
 

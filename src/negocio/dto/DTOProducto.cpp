@@ -7,9 +7,9 @@ using namespace std;
 
 DTOProducto::DTOProducto() {}
 
-DTOProducto::DTOProducto(
+DTOProducto::DTOProducto( // TODO eliminar, este no pasa el vendedor
     string codigo, int stock, double precio,
-    string nombre, string descripcion, ECatProducto* categoria, string nickVendedor) {
+    string nombre, string descripcion, ECatProducto* categoria) {
 
   this->codigo = codigo;
   this->stock = stock;
@@ -17,7 +17,19 @@ DTOProducto::DTOProducto(
   this->nombre = nombre;
   this->descripcion = descripcion;
   this->categoria = categoria;
-  this->vendedor = nickVendedor;
+}
+
+DTOProducto::DTOProducto(
+    string codigo, int stock, double precio,
+    string nombre, string descripcion, ECatProducto* categoria, DTOVendedor* vendedor) {
+
+  this->codigo = codigo;
+  this->stock = stock;
+  this->precio = precio;
+  this->nombre = nombre;
+  this->descripcion = descripcion;
+  this->categoria = categoria;
+  this->vendedor = vendedor;
 
 }
 
@@ -40,7 +52,7 @@ ECatProducto* DTOProducto::getCategoria() {
   return this->categoria;
 }
 
-string DTOProducto::getNickVendedor() {
+DTOVendedor* DTOProducto::getVendedor() {
   return this->vendedor;
 }
 
@@ -48,7 +60,7 @@ string DTOProducto::getNickVendedor() {
 string DTOProducto::toString() {
   return "" + this->codigo + " - " + this->nombre + " - " + this->descripcion +
     " - " + to_string(this->stock) + " - " + format("{:.2f}", this->precio) +
-    " - " + this->categoria->toString() + " - " + this->vendedor;
+    " - " + this->categoria->toString() + " - " + this->vendedor->getNickName();
 }
 
 DTOProducto::~DTOProducto() {}

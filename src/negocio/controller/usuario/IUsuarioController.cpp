@@ -101,6 +101,21 @@ set<string> IUsuarioController::getVendedoresNick() {
   return resultado;
 }
 
+DTOVendedor *IUsuarioController::getVendedor(string nickVendedor) {
+
+  Usuario* u = sistema->usuarios.find(nickVendedor)->second;
+  Vendedor* v = dynamic_cast<Vendedor*>(u);
+
+  DTOVendedor* resultado;
+
+  if (v != nullptr) {
+    resultado = new DTOVendedor(v->getNickName(), v->getPassword(),
+      v->getFechaNacimiento(), v->getRut());
+  }
+
+  return resultado;
+}
+
 set<DTOProducto*> IUsuarioController::getProdVendedor(string vendedor) {
   Usuario* u = sistema->usuarios.find(vendedor)->second;
   Vendedor* v = dynamic_cast<Vendedor*>(u);
