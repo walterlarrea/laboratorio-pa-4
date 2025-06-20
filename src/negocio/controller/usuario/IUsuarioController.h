@@ -32,6 +32,7 @@ public:
     virtual void altaUsuario(DTOUsuario* u);
     virtual set<DTOUsuario*> listarUsuarios();
     virtual set<string> getClientesNick();
+    virtual set<string> getVendedoresNick();
     virtual set<DTOComentario*> getComentariosCliente(string nickCliente);
     virtual void eliminarComentario(string com);
 

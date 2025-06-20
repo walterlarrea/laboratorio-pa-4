@@ -87,6 +87,20 @@ set<string> IUsuarioController::getClientesNick() {
   return resultado;
 }
 
+set<string> IUsuarioController::getVendedoresNick() {
+  set<string> resultado;
+  map<string, Usuario*> usuarios = sistema->usuarios;
+
+  for (auto& par : usuarios) {
+    Usuario* u = par.second;
+    if (Vendedor * v = dynamic_cast<Vendedor*>(u)) {
+      resultado.insert(v->getNickName());
+    }
+  }
+
+  return resultado;
+}
+
 set<DTOComentario*> IUsuarioController::getComentariosCliente(string nickCliente) {
   Usuario* u  = sistema->usuarios.find(nickCliente)->second;
   Cliente* cliente = dynamic_cast<Cliente*>(u);
