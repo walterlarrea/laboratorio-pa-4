@@ -2,7 +2,7 @@
 // Created by Guillermina Rodriguez on 17/6/25.
 //
 #include "../dt/DTFecha.h"
-#include "DTOVendedor.h"
+#include "../dto/DTOVendedor.h"
 
 DTOVendedor::DTOVendedor() {}
 

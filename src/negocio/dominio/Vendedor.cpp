@@ -22,7 +22,7 @@ void Vendedor::addProducto(Producto *producto) {
 }
 
 map<string,Producto*> Vendedor::getProductos() {
-
+  return this->productos;
 }
 
 

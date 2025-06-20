@@ -3,7 +3,7 @@
 
 #include "IPromocion.h"
 #include "../Sistema.h"
-#include "..
+#include "../../dt/DTProductoPromo.h"
 
 class IPromocionController : public IPromocion {
 private:
@@ -15,7 +15,7 @@ public:
   explicit IPromocionController(void* idSesion);
   ~IPromocionController();
 
-  void crearPromocion(set<DTProductoPromo>);
+  //void crearPromocion(set<DTProductoPromo*>);
 };
 
 
