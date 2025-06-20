@@ -32,9 +32,9 @@ void AltaProducto::altaProducto() {
 
     bool existe = this->iproducto->verificarCodigo(codigo);
     if (!existe) {
-      DTOProducto *nuevoProducto = ingresarProducto(codigo);
+      DTOProducto *nuevoProducto = ingresarProducto(codigo, vendedor);
 
-      this->iproducto->agregarProducto(nuevoProducto, vendedor);
+      this->iproducto->agregarProducto(nuevoProducto);
 
       cout << "Fin ingreso de producto " << endl;
 
@@ -56,12 +56,12 @@ string AltaProducto::ingresarVendedor() {
     return retorno; // Se termina si no hay vendedores
   }
 
-  cout << "Lista de vendedores:";
+  cout << "Lista de vendedores:" << endl;
   for (string nombre : nombreVendedores) {
     cout << nombre << endl;
   }
 
-  while (retorno != "") {
+  while (retorno == "") {
     cout << "Ingrese el nombre de vendedor: ";
     cin >> retorno;
     if (!nombreVendedores.contains(retorno)) {
@@ -73,7 +73,7 @@ string AltaProducto::ingresarVendedor() {
   return retorno;
 }
 
-DTOProducto* AltaProducto::ingresarProducto(string codigo) {
+DTOProducto* AltaProducto::ingresarProducto(string codigo, string vendedor) {
   int stock;
   double precio;
   string nombre;
@@ -109,7 +109,8 @@ DTOProducto* AltaProducto::ingresarProducto(string codigo) {
 
   DTOProducto* nuevoProducto = new DTOProducto(
       codigo, stock, precio,
-      nombre, descr, new ECatProducto(cat)
+      nombre, descr, new ECatProducto(cat),
+      vendedor
       );
 
   return nuevoProducto;

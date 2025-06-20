@@ -9,7 +9,7 @@ DTOProducto::DTOProducto() {}
 
 DTOProducto::DTOProducto(
     string codigo, int stock, double precio,
-    string nombre, string descripcion, ECatProducto* categoria) {
+    string nombre, string descripcion, ECatProducto* categoria, string nickVendedor) {
 
   this->codigo = codigo;
   this->stock = stock;
@@ -17,6 +17,7 @@ DTOProducto::DTOProducto(
   this->nombre = nombre;
   this->descripcion = descripcion;
   this->categoria = categoria;
+  this->vendedor = nickVendedor;
 
 }
 
@@ -39,10 +40,15 @@ ECatProducto* DTOProducto::getCategoria() {
   return this->categoria;
 }
 
+string DTOProducto::getNickVendedor() {
+  return this->vendedor;
+}
+
+
 string DTOProducto::toString() {
   return "" + this->codigo + " - " + this->nombre + " - " + this->descripcion +
     " - " + to_string(this->stock) + " - " + format("{:.2f}", this->precio) +
-    " - " + this->categoria->toString();
+    " - " + this->categoria->toString() + " - " + this->vendedor;
 }
 
 DTOProducto::~DTOProducto() {}

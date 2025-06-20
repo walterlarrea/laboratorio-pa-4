@@ -33,14 +33,14 @@ bool IProductoController::verificarCodigo(string codigo) {
   return result;
 }
 
-void IProductoController::agregarProducto(DTOProducto* producto, string vendedor) {
+void IProductoController::agregarProducto(DTOProducto* producto) {
 
-  if (producto != nullptr && vendedor != "") {
+  if (producto != nullptr) {
     Producto* nuevoProducto = new Producto(
       producto->getCodigo(), producto->getStock(), producto->getPrecio(),
       producto->getNombre(), producto->getDescripcion(), producto->getCategoria());
 
-    Vendedor* v = dynamic_cast<Vendedor*>(this->sistema->usuarios.find(vendedor)->second);
+    Vendedor* v = dynamic_cast<Vendedor*>(this->sistema->usuarios.find(producto->getNickVendedor())->second);
 
     nuevoProducto->setVendedor(v);
 
@@ -59,7 +59,7 @@ set<DTOProducto*> IProductoController::obtenerProductos() {
   for (it = this->sistema->productos.begin(); it != this->sistema->productos.end(); ++it) {
     productos.insert(new DTOProducto(
         (*it).second->getCodigo(), (*it).second->getStock(), (*it).second->getPrecio(),
-        (*it).second->getNombre(), (*it).second->getDescripcion(), (*it).second->getCategoria()
+        (*it).second->getNombre(), (*it).second->getDescripcion(), (*it).second->getCategoria(), (*it).second->getNickVendedor()
         ));
   }
 
@@ -83,6 +83,6 @@ DTOProducto* IProductoController::obtenerInfoProducto(string nombreProd) {
 
   return new DTOProducto(
     producto->getCodigo(), producto->getStock(), producto->getPrecio(),
-    producto->getNombre(), producto->getDescripcion(), producto->getCategoria()
+    producto->getNombre(), producto->getDescripcion(), producto->getCategoria(), producto->getNickVendedor()
     );
 }

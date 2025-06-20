@@ -34,7 +34,12 @@ void Sistema::inicializarDatos() {
   Comentario* com1c1 = new Comentario("Muy bueno", new DTFecha(10, 06, 2025), cliente1, prod1);
   cliente1->agregarComentario(com1c1);
 
+  Vendedor* vendedor1 = new Vendedor("Maicol", "Maicol",
+    new DTFecha(28, 11, 2004),
+    "123456789012");
+
   this->usuarios.insert(pair(cliente1->getNickName(), cliente1));
+  this->usuarios.insert(pair(vendedor1->getNickName(), vendedor1));
 
   cout << "Fin inicializacion Sistema " << endl;
 }

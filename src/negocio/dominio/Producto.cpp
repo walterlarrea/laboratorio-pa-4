@@ -39,12 +39,14 @@ void Producto::setVendedor(Vendedor* v) {
   this->vendedor = v;
 }
 
+string Producto::getNickVendedor() {
+  return this->vendedor->getNickName();
+}
+
 
 // TODO: Para implementar .....
 /*
-string Producto::getNickVendedor() {
 
-}
 map<string, Comentario*> Producto::getComentarios() {
 
 }

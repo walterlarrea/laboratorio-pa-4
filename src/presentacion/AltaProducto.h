@@ -15,7 +15,7 @@ private:
   IUsuario* iusuario;
   // ListarCategoriasProd* listarCategoriasProd;
 
-	DTOProducto* ingresarProducto(string codigo);
+	DTOProducto* ingresarProducto(string codigo, string vendedor);
   string ingresarVendedor();
 
 public:

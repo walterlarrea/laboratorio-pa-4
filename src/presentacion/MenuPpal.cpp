@@ -19,6 +19,7 @@ MenuPpal::~MenuPpal() = default;
 void MenuPpal::mostrarMenu() {
   int op = 0;
   do {
+    cout << endl;
     cout << "*** Menu principal ***" << endl;
     cout << "1) Alta Producto" << endl;
     cout << "2) Listar Productos" << endl;
