@@ -12,6 +12,8 @@ private:
   Sistema* sistema; //cada controlador de la aplicación tiene una instancia de la clase sistema
   //solo existe una instancia de la clase sistema en toda la aplicacion
   Memoria* memoria;
+
+  DTOProducto* crearDTOProducto(Producto* producto);
 public:
   IProductoController();
   explicit IProductoController(void* idSesion);
@@ -19,11 +21,10 @@ public:
 
   bool verificarCodigo(string codigo);
   void agregarProducto(DTOProducto *producto);
-  set<string> listarProductos();
-  DTOProducto* obtenerInfoProducto(string nombreProd);
 
-  // TODO: borrar este metodo porque no es un CU
+  // TODO: ARREGLAR EL CASO DE USO, SE DEBE OBTENER ESTO PORQUE SE NECESITA CODIGO Y NOMBRE DEL PRODUCTO
   set<DTOProducto*> obtenerProductos();
+  DTOProducto* obtenerInfoProducto(string codProd);
 };
 
 

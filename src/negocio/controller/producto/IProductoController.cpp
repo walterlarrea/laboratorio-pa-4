@@ -53,34 +53,24 @@ void IProductoController::agregarProducto(DTOProducto* producto) {
 }
 
 set<DTOProducto*> IProductoController::obtenerProductos() {
-  set<DTOProducto*> productos;
+  set<DTOProducto*> retorno;
+  map<string, Producto*> listaProductos = this->sistema->productos;
 
-  map<string, Producto*>::iterator it;
-
-  for (it = this->sistema->productos.begin(); it != this->sistema->productos.end(); ++it) {
-    productos.insert(new DTOProducto(
-        (*it).second->getCodigo(), (*it).second->getStock(), (*it).second->getPrecio(),
-        (*it).second->getNombre(), (*it).second->getDescripcion(), (*it).second->getCategoria()
-        ));
+  for (pair<string, Producto*> par : listaProductos) {
+    retorno.insert(crearDTOProducto(par.second));
   }
 
-  return productos;
+  return retorno;
+
 }
 
-set<string> IProductoController::listarProductos() {
-  set<string> nombreProductos;
+DTOProducto* IProductoController::obtenerInfoProducto(string codProd) {
+  Producto* producto = this->sistema->productos.find(codProd)->second;
 
-  map<string, Producto*>::iterator it;
-
-  for (it = this->sistema->productos.begin(); it != this->sistema->productos.end(); ++it) {
-    nombreProductos.insert((*it).second->getNombre());
-  }
-
-  return nombreProductos;
+  return crearDTOProducto(producto);
 }
 
-DTOProducto* IProductoController::obtenerInfoProducto(string nombreProd) {
-  Producto* producto = this->sistema->productos.at(nombreProd);
+DTOProducto *IProductoController::crearDTOProducto(Producto* producto) {
 
   Vendedor* v = producto->getVendedor();
 
@@ -88,6 +78,5 @@ DTOProducto* IProductoController::obtenerInfoProducto(string nombreProd) {
 
   return new DTOProducto(
     producto->getCodigo(), producto->getStock(), producto->getPrecio(),
-    producto->getNombre(), producto->getDescripcion(), producto->getCategoria(), vendedor
-    );
+    producto->getNombre(), producto->getDescripcion(), producto->getCategoria(), vendedor );
 }
