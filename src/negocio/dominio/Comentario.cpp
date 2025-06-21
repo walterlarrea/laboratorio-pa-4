@@ -18,8 +18,9 @@ void Comentario::eliminarRespuestas() {
   // TODO
 }
 void Comentario::agregarRespuesta(Comentario* respuesta) {
-  // TODO
+  this->respuestas.insert(respuesta);
 }
+
 
 string Comentario::getTexto() {
   return this->texto;

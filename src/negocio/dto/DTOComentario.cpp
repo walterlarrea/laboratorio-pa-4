@@ -20,6 +20,8 @@ string DTOComentario::getCliente() { return this->cliente; }
 string DTOComentario::getProducto() { return this->producto; }
 set<DTOComentario*> DTOComentario::getRespuestas() { return this->respuestas; }
 
+
+
 string DTOComentario::toString() {
    return "" + this->getFecha()->toString() + " - " + this->getTexto() + ". "
    + to_string(this->getRespuestas().size()) + " rsp. | "
