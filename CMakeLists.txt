@@ -22,7 +22,9 @@ if(SRC_SUB_SOURCES)
             src/negocio/controller/usuario/IUsuarioController.h
             src/negocio/controller/usuario/IUsuario.h
             src/presentacion/ListarUsuarios.cpp
-            src/presentacion/ListarUsuarios.h)
+            src/presentacion/ListarUsuarios.h
+            src/presentacion/DejarComentario.cpp
+            src/presentacion/DejarComentario.h)
 
     target_include_directories(Src PUBLIC
             ${CMAKE_CURRENT_SOURCE_DIR}

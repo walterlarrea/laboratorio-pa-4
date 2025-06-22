@@ -18,9 +18,13 @@ public:
     virtual bool verificarNickname(string nick)=0;
     virtual void altaUsuario(DTOUsuario* u)=0;
     virtual set<DTOUsuario*> listarUsuarios()=0;
+    virtual set<string> getUsuariosNick()=0;
     virtual set<string> getClientesNick()=0;
     virtual set<DTOComentario*> getComentariosCliente(string nickCliente)=0;
     virtual void eliminarComentario(string com)=0;
+    virtual void dejarComentario(DTOComentario* dto) = 0;
+    virtual void responderComentario(DTOComentario* dto, string textoPadre) = 0;
+
 
 };
 

@@ -19,7 +19,7 @@ string Cliente::getCiudad() {
 DTDireccion *Cliente::getDireccion() {
     return this->direccion;
 }
-// TODO: Implementar...
+
 map<string, Comentario*> Cliente::getComentarios() {
   return this->comentarios;
 }
