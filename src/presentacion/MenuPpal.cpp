@@ -9,6 +9,7 @@
 #include "ConsultarProducto.h"
 
 #include "EliminarComentario.h"
+#include "DejarComentario.h"
 
 using namespace std;
 
@@ -27,6 +28,7 @@ void MenuPpal::mostrarMenu() {
     cout << "4) Alta Usuario" << endl;
     cout << "5) Listar Usuarios" << endl;
     cout << "6) Eliminar Comentario" << endl;
+    cout << "7) Dejar Comentario" << endl;
     cout << "0) Salir " << endl;
     cout << "Ingrese una opcion: " << endl;
 
@@ -65,7 +67,11 @@ void MenuPpal::mostrarMenu() {
         eliminarComentario.eliminarComentario();
       }
       break;
-
+      case 7: {
+        DejarComentario dejarComentario;
+        dejarComentario.dejarComentario();
+      }
+      break;
       default:
         cout << "Opcion desconocida" << endl;
     }

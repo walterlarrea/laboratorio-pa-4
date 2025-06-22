@@ -34,7 +34,8 @@ public:
   string getDescripcion();
   ECatProducto* getCategoria();
   Vendedor* getVendedor();
-  map<string, Comentario*> getComentarios();
+  map<string, Comentario*>& getComentarios();
+  void agregarComentario(Comentario* c);
 
   void setVendedor(Vendedor* v);
   bool vendedorIgualA(string nickVend);

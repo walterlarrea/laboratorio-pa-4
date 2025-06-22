@@ -42,21 +42,13 @@ void Producto::setVendedor(Vendedor* v) {
 Vendedor* Producto::getVendedor() {
   return this->vendedor;
 }
+map<string, Comentario*>& Producto::getComentarios() {
+return this->comentarios;
+}
 
-
-// TODO: Para implementar .....
-/*
-
-map<string, Comentario*> Producto::getComentarios() {
-
+void Producto::agregarComentario(Comentario* c) {
+  this->comentarios[c->getTexto()] = c;
 }
 
 
-bool Producto::vendedorIgualA(string nickVend) {
-
-}
-void Producto::disminuirStock(int cantidad) {
-
-}
-*/
 

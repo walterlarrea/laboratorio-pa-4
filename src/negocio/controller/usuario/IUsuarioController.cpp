@@ -72,6 +72,16 @@ set<DTOUsuario*> IUsuarioController::listarUsuarios() {
 
     return resultado;
 }
+set<string> IUsuarioController::getUsuariosNick() {
+  set<string> resultado;
+  auto& usuarios = sistema->usuarios;
+
+  for (auto& par : usuarios) {
+    resultado.insert(par.first);
+  }
+  return resultado;
+}
+
 
 set<string> IUsuarioController::getClientesNick() {
   set<string> resultado;
@@ -167,6 +177,35 @@ void IUsuarioController::eliminarComentario(string com) {
     delete comentario;
   }
 }
+
+void IUsuarioController::dejarComentario(DTOComentario* dto) {
+  string nickCliente = dto->getCliente();
+  string nombreProd = dto->getProducto();
+
+  Cliente* cliente = dynamic_cast<Cliente*>(sistema->usuarios[nickCliente]);
+  Producto* producto = sistema->productos[nombreProd];
+
+  Comentario* comentario = new Comentario(dto->getTexto(), dto->getFecha(), cliente, producto);
+
+  producto->agregarComentario(comentario);
+  cliente->agregarComentario(comentario);
+}
+
+void IUsuarioController::responderComentario(DTOComentario* dto, string textoPadre) {
+  string nickCliente = dto->getCliente();
+  string nombreProd = dto->getProducto();
+
+  Cliente* cliente = dynamic_cast<Cliente*>(sistema->usuarios[nickCliente]);
+  Producto* producto = sistema->productos[nombreProd];
+
+  Comentario* comentario = new Comentario(dto->getTexto(), dto->getFecha(), cliente, producto);
+
+  Comentario* comentarioPadre = producto->getComentarios().at(textoPadre);
+  comentarioPadre->agregarRespuesta(comentario);
+
+  cliente->agregarComentario(comentario);
+}
+
 
 
 #endif

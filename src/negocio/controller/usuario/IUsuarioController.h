@@ -31,12 +31,15 @@ public:
     bool verificarNickname(string nick);
     virtual void altaUsuario(DTOUsuario* u);
     virtual set<DTOUsuario*> listarUsuarios();
+    virtual set<string> getUsuariosNick();
     virtual set<string> getClientesNick();
     virtual set<string> getVendedoresNick();
     virtual DTOVendedor* getVendedor(string nickVendedor);
     virtual set<DTOProducto*> getProdVendedor(string vendedor);
     virtual set<DTOComentario*> getComentariosCliente(string nickCliente);
     virtual void eliminarComentario(string com);
+    virtual void dejarComentario(DTOComentario* dto);
+    virtual void responderComentario(DTOComentario* dto, string textopadre);
 
 };
 
