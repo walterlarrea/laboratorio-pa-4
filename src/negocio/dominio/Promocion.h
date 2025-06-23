@@ -17,7 +17,7 @@ private:
   string descripcion;
   double descuento;
   DTFecha* fechaVencimiento;
-  list<ProdPromo*> prodPromos;
+  map<string, ProdPromo*> prodPromos;
 
 public:
   Promocion();
@@ -28,7 +28,9 @@ public:
   string getDescripcion();
   double getDescuento();
   DTFecha* getFechaVencimiento();
+  map<string, ProdPromo*> getProdPromos();
   void addProdPromo(int cantMinima, Producto* prod);
+  bool buscarExistencia(string codProd);
 };
 
 

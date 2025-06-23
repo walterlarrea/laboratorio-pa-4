@@ -1,9 +1,12 @@
 #ifndef IPROMOCIONCONTROLLER_H
 #define IPROMOCIONCONTROLLER_H
 
-#include "IPromocion.h"
+
 #include "../Sistema.h"
-#include "../../dt/DTProductoPromo.h"
+#include "IPromocion.h"
+#include <iostream>
+
+using namespace std;
 
 class IPromocionController : public IPromocion {
 private:
@@ -15,7 +18,8 @@ public:
   explicit IPromocionController(void* idSesion);
   ~IPromocionController();
 
-  //void crearPromocion(set<DTProductoPromo*>);
+  bool buscarExistencia(string codProd);
+  void altaPromocion(DTOPromocion* promocion);
 };
 
 

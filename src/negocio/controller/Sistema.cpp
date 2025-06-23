@@ -43,21 +43,25 @@ void Sistema::inicializarDatos() {
     "Bidon 6L Salus", "Agua mineral riquisima",
     new ECatProducto(2));
   prod1->setVendedor(vendedor1);
+  vendedor1->addProducto(prod1);
 
   Producto* prod2 = new Producto("2", 50, 50.5,
     "Alfajor triple", "Buen alfajor",
     new ECatProducto(2));
   prod2->setVendedor(vendedor1);
+  vendedor1->addProducto(prod2);
 
   Producto* prod3 = new Producto("3", 5, 13000.0,
   "Lavarropas James", "Buena velocidad de lavado",
   new ECatProducto(1));
   prod3->setVendedor(vendedor2);
+  vendedor2->addProducto(prod3);
 
   Producto* prod4 = new Producto("4", 10, 5200.0,
   "Microondas chico", "Gran calidad y precio",
   new ECatProducto(1));
   prod4->setVendedor(vendedor2);
+  vendedor2->addProducto(prod4);
 
   Comentario* com1c1 = new Comentario("Muy bueno", new DTFecha(10, 06, 2025), cliente1, prod1);
   cliente1->agregarComentario(com1c1);
