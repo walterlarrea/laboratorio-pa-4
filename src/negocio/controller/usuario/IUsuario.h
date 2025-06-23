@@ -9,6 +9,7 @@
 #include <string>
 #include "../../dt/DTFecha.h"
 #include "../../dto/DTOComentario.h"
+#include "../../dto/DTOProducto.h"
 #include "../../dto/DTOUsuario.h"
 
 using namespace std;
@@ -20,6 +21,9 @@ public:
     virtual set<DTOUsuario*> listarUsuarios()=0;
     virtual set<string> getUsuariosNick()=0;
     virtual set<string> getClientesNick()=0;
+    virtual set<string> getVendedoresNick()=0;
+    virtual DTOVendedor* getVendedor(string nickVendedor) = 0;
+    virtual set<DTOProducto*> getProdVendedor(string vendedor)=0;
     virtual set<DTOComentario*> getComentariosCliente(string nickCliente)=0;
     virtual void eliminarComentario(string com)=0;
     virtual void dejarComentario(DTOComentario* dto) = 0;

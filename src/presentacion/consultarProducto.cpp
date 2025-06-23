@@ -16,19 +16,23 @@ ConsultarProducto::~ConsultarProducto() {
 }
 
 void ConsultarProducto::consultarProducto() {
-  set<string> nombreProductos = this->iproducto->listarProductos();
+  set<DTOProducto*> productos = this->iproducto->obtenerProductos();
 
-  if (!nombreProductos.empty()){
+  if (!productos.empty()){
     cout << "Estos son todos los productos en el sistema:" << endl << endl;
 
-    set<string>::iterator it;
-    for (string nombre : nombreProductos) {
-      cout << nombre << endl;
+    for (DTOProducto* producto : productos) {
+      cout << producto->getCodigo()<< " - " << producto->getNombre() << endl;
     }
 
     string prodSeleccionado;
-    cout << endl << "Ingrese el nombre del producto: ";
+    cout << endl << "Ingrese el codigo del producto: ";
     cin >> prodSeleccionado;
+
+    if (!iproducto->verificarCodigo(prodSeleccionado)) {
+      cout<< "Código inválido" << endl ;
+      return;
+    }
 
     DTOProducto* producto = this->iproducto->obtenerInfoProducto(prodSeleccionado);
 

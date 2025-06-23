@@ -7,13 +7,13 @@
 #include "DejarComentario.h"
 
 #include <iostream>
+#include <vector>
 
 
 using namespace std;
 
 DejarComentario::DejarComentario() {
   void* sesion = &sesion;
-  // sesion = &sesion;
   this->iproducto = new IProductoController(sesion);
   this->iusuario = new IUsuarioController(sesion);
 };
@@ -40,19 +40,29 @@ void DejarComentario::dejarComentario() {
   cout << "Seleccione nickname: ";
   cin >> nick;
 
-  set<string> productos = iproducto->listarProductos();
-  if (productos.empty()) {
-    cout << "No hay productos disponibles." << endl;
-    return;
+  set<DTOProducto*> productos = this->iproducto->obtenerProductos();
+
+  if (productos.size() > 0) {
+
+    cout << "Estos son todos los productos en el sistema:" << endl << endl;
+
+    for (auto producto : productos) {
+      cout << producto->getCodigo() << " - " << producto->getNombre() << endl;
+    }
+
+  } else {
+    cout << "No existen productos en el sistema." << endl << endl;
+    return ;
   }
 
-  cout << "Productos disponibles:" << endl;
-  for (const string& p : productos)
-    cout << "- " << p << endl;
+  string prodSeleccionado;
+  cout << endl << "Ingrese el codigo del producto: ";
+  cin >> prodSeleccionado;
 
-  string nombreProd;
-  cout << "Seleccione producto: ";
-  cin >> nombreProd;
+  if (!iproducto->verificarCodigo(prodSeleccionado)) {
+    cout<< "Código inválido" << endl ;
+    return;
+  }
 
   int tipo;
   cout << "1 - Comentario nuevo\n2 - Responder a comentario\nSeleccione tipo: ";
@@ -64,10 +74,10 @@ void DejarComentario::dejarComentario() {
     cin.ignore();
     getline(cin, texto);
 
-    DTOComentario* dto = new DTOComentario(texto, fecha, nick, nombreProd, {});
+    DTOComentario* dto = new DTOComentario(texto, fecha, nick, prodSeleccionado, {});
     iusuario->dejarComentario(dto);
   } else if (tipo == 2) {
-    set<DTOComentario*> comentarios = iproducto->getComentariosProducto(nombreProd);
+    set<DTOComentario*> comentarios = iproducto->getComentariosProducto(prodSeleccionado);
     if (comentarios.empty()) {
       cout << "No hay comentarios en este producto." << endl;
       return;
@@ -75,7 +85,7 @@ void DejarComentario::dejarComentario() {
 
     cout << "Comentarios del producto:" << endl;
     int i = 0;
-    vector<string> referencias;
+    pmr::vector<string> referencias;
     for (DTOComentario* c : comentarios) {
       cout << i << ": " << c->toString() << endl;
       referencias.push_back(c->getTexto());
@@ -92,7 +102,7 @@ void DejarComentario::dejarComentario() {
       cin.ignore();
       getline(cin, texto);
 
-      DTOComentario* dto = new DTOComentario(texto, fecha, nick, nombreProd, {});
+      DTOComentario* dto = new DTOComentario(texto, fecha, nick, prodSeleccionado, {});
       iusuario->responderComentario(dto, ref);
     } else {
       cout << "Indice invalido." << endl;

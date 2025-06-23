@@ -4,6 +4,7 @@
 
 #include "../dominio/Producto.h"
 #include "Memoria.h"
+#include "../dominio/Promocion.h"
 
 
 using namespace std;
@@ -25,6 +26,7 @@ public:
 
   map<string, Producto*> productos;
   map<string, Usuario*> usuarios;
+  map<string, Promocion*> promocion;
 };
 
 #endif /* NEGOCIO_CONTROLLER_SISTEMA_CPP_ */

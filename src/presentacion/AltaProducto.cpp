@@ -1,42 +1,82 @@
 
 #include "AltaProducto.h"
 
+#include <iostream>
 #include "../negocio//controller/producto/IProductoController.h"
 #include "../negocio/enums/ECatProducto.h"
-#include<iostream>
+
+#include "../negocio/controller/usuario/IUsuarioController.h"
 
 using namespace std;
 
 AltaProducto::AltaProducto() {
   void* sesion = &sesion;
   this->iproducto = new IProductoController(sesion);
+  this->iusuario = new IUsuarioController(sesion);
 }
 
 AltaProducto::~AltaProducto() {
   //El controlador solo dura lo que dura el caso de uso
   delete this->iproducto;
+  delete this->iusuario;
 }
 
 void AltaProducto::altaProducto() {
 
-  string codigo;
-  cout << "Ingrese codigo:"<< endl;
-  cin >> codigo;
+  DTOVendedor* vendedor = ingresarVendedor();
 
-  bool existe = this->iproducto->verificarCodigo(codigo);
-  if (!existe) {
-    DTOProducto *nuevoProducto = ingresarProducto(codigo);
+  if (vendedor != nullptr) {
+    string codigo;
+    cout << "Ingrese codigo:"<< endl;
+    cin >> codigo;
 
-    this->iproducto->agregarProducto(nuevoProducto);
+    bool existe = this->iproducto->verificarCodigo(codigo);
+    if (!existe) {
+      DTOProducto *nuevoProducto = ingresarProducto(codigo, vendedor);
 
-    cout << "Fin ingreso de producto " << endl;
+      this->iproducto->agregarProducto(nuevoProducto);
 
-  } else  {
-    cout << "Ya existe el producto. Imposible continuar..." << endl;
+      cout << "Fin ingreso de producto " << endl;
+
+    } else  {
+      cout << "Ya existe el producto. Imposible continuar..." << endl;
+    }
   }
+
 }
 
-DTOProducto* AltaProducto::ingresarProducto(string codigo) {
+DTOVendedor* AltaProducto::ingresarVendedor() {
+  set<string> nombreVendedores = this->iusuario->getVendedoresNick();
+
+  DTOVendedor* vendedor;
+  string nickVendedor = "";
+
+  if (!nombreVendedores.empty()) {
+    cout << "Lista de vendedores " << endl;
+
+    for (const string& nom : nombreVendedores) {
+      cout << nom << endl;
+    }
+
+    while (!nombreVendedores.contains(nickVendedor)) {
+      cout << "Escriba el nombre del vendedor deseado: ";
+      cin >> nickVendedor;
+
+      if (!nombreVendedores.contains(nickVendedor)) {
+        cout << "Nombre erroneo, intente nuevamente" << endl;
+      }
+    }
+
+    vendedor = this->iusuario->getVendedor(nickVendedor);
+
+  } else {
+    cout << "No hay vendedores en el sistema." << endl;
+  }
+
+  return vendedor;
+}
+
+DTOProducto* AltaProducto::ingresarProducto(string codigo, DTOVendedor* vendedor) {
   int stock;
   double precio;
   string nombre;
@@ -46,7 +86,8 @@ DTOProducto* AltaProducto::ingresarProducto(string codigo) {
   cout << "Ingresar nombre:" << endl;
   cin >> nombre;
   cout << "Ingresar descripcion:" << endl;
-  cin >> descr;
+  cin.ignore();
+  getline(cin, descr);
   cout << "Ingresar stock:" << endl;
   cin >> stock;
   cout << "Ingresar precio:" << endl;
@@ -68,12 +109,13 @@ DTOProducto* AltaProducto::ingresarProducto(string codigo) {
       cout << "La categoria seleccionada no existe. Seleccione una diferente" << endl;
     }
   } while (!ECatProducto::verificarCategoria(cat));
+
   // TODO: Dar posibilidad de cancelar el proceso de alta?
 
   DTOProducto* nuevoProducto = new DTOProducto(
       codigo, stock, precio,
-      nombre, descr, new ECatProducto(cat)
-      );
+      nombre, descr, new ECatProducto(cat), vendedor);
 
   return nuevoProducto;
 }
+

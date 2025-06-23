@@ -35,6 +35,13 @@ ECatProducto* Producto::getCategoria() {
   return this->categoria;
 }
 
+void Producto::setVendedor(Vendedor* v) {
+  this->vendedor = v;
+}
+
+Vendedor* Producto::getVendedor() {
+  return this->vendedor;
+}
 map<string, Comentario*>& Producto::getComentarios() {
 return this->comentarios;
 }
@@ -43,21 +50,5 @@ void Producto::agregarComentario(Comentario* c) {
   this->comentarios[c->getTexto()] = c;
 }
 
-// TODO: Para implementar .....
-/*
-string Producto::getNickVendedor() {
 
-}
-
-
-void Producto::setVendedor(Vendedor* v) {
-
-}
-bool Producto::vendedorIgualA(string nickVend) {
-
-}
-void Producto::disminuirStock(int cantidad) {
-
-}
-*/
 

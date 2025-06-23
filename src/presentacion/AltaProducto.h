@@ -6,20 +6,23 @@
 #define ALTAPRODUCTO_H
 
 #include "../negocio/controller/producto/IProducto.h"
-
+#include "../negocio/controller/usuario/IUsuario.h"
 
 
 class AltaProducto {
 private:
   IProducto* iproducto;
+  IUsuario* iusuario;
   // ListarCategoriasProd* listarCategoriasProd;
 
-	DTOProducto* ingresarProducto(string codigo);
+	DTOProducto* ingresarProducto(string codigo, DTOVendedor* vendedor);
+  DTOVendedor* ingresarVendedor();
 
 public:
   AltaProducto();
 
   void altaProducto();
+
 
   virtual ~AltaProducto();
 };

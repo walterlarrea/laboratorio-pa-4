@@ -2,10 +2,13 @@
 #ifndef DTOPRODUCTO_H
 #define DTOPRODUCTO_H
 
+#include <string>
 #include "../enums/ECatProducto.h"
-#include<string>
+#include "../dto/DTOVendedor.h"
 
 using namespace std;
+
+class DTOVendedor;
 
 class DTOProducto {
 private:
@@ -15,12 +18,16 @@ private:
   string nombre;
   string descripcion;
   ECatProducto* categoria;
+  DTOVendedor* vendedor;
 
 public:
   DTOProducto();
   DTOProducto(
       string codigo, int stock, double precio,
       string nombre, string descripcion, ECatProducto* categoria);
+  DTOProducto(
+      string codigo, int stock, double precio,
+      string nombre, string descripcion, ECatProducto* categoria, DTOVendedor* vendedor);
 
   string getCodigo();
   int getStock();
@@ -28,6 +35,7 @@ public:
   string getNombre();
   string getDescripcion();
   ECatProducto* getCategoria();
+  DTOVendedor* getVendedor();
 
   string toString();
 
