@@ -12,6 +12,8 @@ private:
   Sistema* sistema; //cada controlador de la aplicación tiene una instancia de la clase sistema
   //solo existe una instancia de la clase sistema en toda la aplicacion
   Memoria* memoria;
+
+  DTOProducto* crearDTOProducto(Producto* producto);
 public:
   IProductoController();
   explicit IProductoController(void* idSesion);
@@ -19,9 +21,11 @@ public:
 
   bool verificarCodigo(string codigo);
   void agregarProducto(DTOProducto *producto);
+  set<DTOProducto*> obtenerProductos();
   DTOProducto* obtenerInfoProducto(string codProd);
+
   set<DTOComentario*> getComentariosProducto(string nombreProd);
-  void agregarComentario(string nombreProd, DTOComentario* nuevo, string padre);
+  void agregarComentario(string codProd, DTOComentario* nuevo, string padre);
 
 };
 

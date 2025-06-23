@@ -22,12 +22,17 @@ void ConsultarProducto::consultarProducto() {
     cout << "Estos son todos los productos en el sistema:" << endl << endl;
 
     for (DTOProducto* producto : productos) {
-      cout << producto->getNombre() << " - " << producto->getCodigo() << endl;
+      cout << producto->getCodigo()<< " - " << producto->getNombre() << endl;
     }
 
     string prodSeleccionado;
     cout << endl << "Ingrese el codigo del producto: ";
     cin >> prodSeleccionado;
+
+    if (!iproducto->verificarCodigo(prodSeleccionado)) {
+      cout<< "Código inválido" << endl ;
+      return;
+    }
 
     DTOProducto* producto = this->iproducto->obtenerInfoProducto(prodSeleccionado);
 
