@@ -5,8 +5,9 @@
 #include "ListarUsuarios.h"
 
 #include "AltaProducto.h"
-#include "ListarProductos.h"
+#include "AltaPromocion.h"
 #include "ConsultarProducto.h"
+#include "ListarProductos.h"
 
 #include "EliminarComentario.h"
 #include "DejarComentario.h"
@@ -29,6 +30,8 @@ void MenuPpal::mostrarMenu() {
     cout << "5) Listar Usuarios" << endl;
     cout << "6) Eliminar Comentario" << endl;
     cout << "7) Dejar Comentario" << endl;
+    cout << "8) Alta Promocion" << endl;
+    cout << "9) Consultar Promocion" << endl;
     cout << "0) Salir " << endl;
     cout << "Ingrese una opcion: " << endl;
 
@@ -62,7 +65,7 @@ void MenuPpal::mostrarMenu() {
         listarUsuarios.listarUsuarios();
       }
       break;
-        case 6: {
+      case 6: {
         EliminarComentario eliminarComentario;
         eliminarComentario.eliminarComentario();
       }
@@ -70,6 +73,15 @@ void MenuPpal::mostrarMenu() {
       case 7: {
         DejarComentario dejarComentario;
         dejarComentario.dejarComentario();
+      }
+      break;
+      case 8: {
+        AltaPromocion altaPromocion;
+        altaPromocion.altaPromocion();
+      }
+      break;
+      case 9: {
+
       }
       break;
       default:

@@ -42,7 +42,7 @@ bool IUsuarioController::verificarNickname(string nick) {
 
 void IUsuarioController::altaUsuario(DTOUsuario* u) {
     string nick = u->getNickName();
-    auto& usuarios = sistema->usuarios;
+    auto& usuarios = this->sistema->usuarios;
 
     Usuario* nuevo = nullptr;
 
@@ -59,7 +59,7 @@ void IUsuarioController::altaUsuario(DTOUsuario* u) {
 
 set<DTOUsuario*> IUsuarioController::listarUsuarios() {
     set<DTOUsuario*> resultado;
-    auto& usuarios = sistema->usuarios;
+    auto& usuarios = this->sistema->usuarios;
 
     for (auto& par : usuarios) {
         Usuario* u = par.second;
@@ -74,7 +74,7 @@ set<DTOUsuario*> IUsuarioController::listarUsuarios() {
 }
 set<string> IUsuarioController::getUsuariosNick() {
   set<string> resultado;
-  auto& usuarios = sistema->usuarios;
+  auto& usuarios = this->sistema->usuarios;
 
   for (auto& par : usuarios) {
     resultado.insert(par.first);
@@ -85,7 +85,7 @@ set<string> IUsuarioController::getUsuariosNick() {
 
 set<string> IUsuarioController::getClientesNick() {
   set<string> resultado;
-  auto& usuarios = sistema->usuarios;
+  auto& usuarios = this->sistema->usuarios;
 
   for (auto& par : usuarios) {
     Usuario* u = par.second;
@@ -99,7 +99,7 @@ set<string> IUsuarioController::getClientesNick() {
 
 set<string> IUsuarioController::getVendedoresNick() {
   set<string> resultado;
-  map<string, Usuario*> usuarios = sistema->usuarios;
+  map<string, Usuario*> usuarios = this->sistema->usuarios;
 
   for (auto& par : usuarios) {
     Usuario* u = par.second;
@@ -113,7 +113,7 @@ set<string> IUsuarioController::getVendedoresNick() {
 
 DTOVendedor *IUsuarioController::getVendedor(string nickVendedor) {
 
-  Usuario* u = sistema->usuarios.find(nickVendedor)->second;
+  Usuario* u = this->sistema->usuarios.find(nickVendedor)->second;
   Vendedor* v = dynamic_cast<Vendedor*>(u);
 
   DTOVendedor* resultado;
@@ -126,14 +126,22 @@ DTOVendedor *IUsuarioController::getVendedor(string nickVendedor) {
   return resultado;
 }
 
-set<DTOProducto*> IUsuarioController::getProdVendedor(string vendedor) {
-  Usuario* u = sistema->usuarios.find(vendedor)->second;
+map<string, DTOProducto*> IUsuarioController::getProdVendedor(string vendedor) {
+  Usuario* u = this->sistema->usuarios.find(vendedor)->second;
   Vendedor* v = dynamic_cast<Vendedor*>(u);
 
-  set<DTOProducto*> resultado;
-  if (v != nullptr) {
+  map<string, DTOProducto*> resultado;
 
+  for (pair<string,Producto*> par : v->getProductos()) {
+    Producto* producto = par.second;
+    DTOProducto* dt = new DTOProducto( producto->getCodigo(), producto->getStock(),
+      producto->getPrecio(),producto->getNombre(), producto->getDescripcion(),
+      producto->getCategoria());
+
+
+    resultado.insert(make_pair(producto->getCodigo(),dt));
   }
+
 
   return resultado;
 }

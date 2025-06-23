@@ -14,24 +14,40 @@
  }
 
 string Promocion::getNombre() {
-   return nombre;
+   return this->nombre;
  }
 
 string Promocion::getDescripcion() {
-   return descripcion;
+   return this->descripcion;
  }
 
 double Promocion::getDescuento() {
-   return descuento;
+   return this->descuento;
  }
 
 DTFecha* Promocion::getFechaVencimiento() {
-   return fechaVencimiento;
+   return this->fechaVencimiento;
+ }
+
+map<string, ProdPromo*> Promocion::getProdPromos() {
+   return this->prodPromos;
  }
 
 void Promocion::addProdPromo(int cantMinima, Producto *prod) {
    if (cantMinima > 0 & prod != nullptr) {
-     ProdPromo * prodPromo = new ProdPromo(cantMinima, prod);
-     this->prodPromos.push_back(prodPromo);
+    ProdPromo *prodPromo = new ProdPromo(cantMinima, prod);
+     this->prodPromos.insert(make_pair(prod->getCodigo(), prodPromo));
    }
+ }
+
+bool Promocion::buscarExistencia(string codProd) {
+   map<string, ProdPromo*> prodPromos = this->getProdPromos();
+   bool vacio = prodPromos.find(codProd)->first.empty();
+
+   if ( vacio ) {
+     return false;
+   } else {
+     return true;
+   }
+
  }
