@@ -12,6 +12,8 @@
 #include "EliminarComentario.h"
 #include "DejarComentario.h"
 
+#include "RealizarCompra.h"
+
 using namespace std;
 
 MenuPpal::MenuPpal() = default;
@@ -32,6 +34,7 @@ void MenuPpal::mostrarMenu() {
     cout << "7) Dejar Comentario" << endl;
     cout << "8) Alta Promocion" << endl;
     cout << "9) Consultar Promocion" << endl;
+    cout << "10) Realizar Compra" << endl;
     cout << "0) Salir " << endl;
     cout << "Ingrese una opcion: " << endl;
 
@@ -82,6 +85,11 @@ void MenuPpal::mostrarMenu() {
       break;
       case 9: {
 
+      }
+      break;
+      case 10: {
+        RealizarCompra realizarCompra;
+        realizarCompra.realizarCompra();
       }
       break;
       default:

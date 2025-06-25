@@ -50,5 +50,8 @@ void Producto::agregarComentario(Comentario* c) {
   this->comentarios[c->getTexto()] = c;
 }
 
+void Producto::disminuirStock(int cantidad) {
+  this->stock -= cantidad;
+}
 
 

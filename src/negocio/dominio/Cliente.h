@@ -12,6 +12,8 @@
 using namespace std;
 
 class Comentario;
+class Compra;
+class Producto;
 
 class Cliente : public Usuario{
 private:

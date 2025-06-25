@@ -29,7 +29,7 @@ public:
     virtual void dejarComentario(DTOComentario* dto) = 0;
     virtual void responderComentario(DTOComentario* dto, string textoPadre) = 0;
 
-
+    virtual void seleccionarCliente(string nickname)=0;
 };
 
 #endif

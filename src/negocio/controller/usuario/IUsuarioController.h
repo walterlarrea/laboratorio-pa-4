@@ -41,6 +41,7 @@ public:
     virtual void dejarComentario(DTOComentario* dto);
     virtual void responderComentario(DTOComentario* dto, string textopadre);
 
+    virtual void seleccionarCliente(string nickname);
 };
 
 #endif
