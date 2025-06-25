@@ -27,6 +27,7 @@ public:
   map<string, Producto*> productos;
   map<string, Usuario*> usuarios;
   map<string, Promocion*> promociones;
+  map<string, Compra*> compras;
 };
 
 #endif /* NEGOCIO_CONTROLLER_SISTEMA_CPP_ */

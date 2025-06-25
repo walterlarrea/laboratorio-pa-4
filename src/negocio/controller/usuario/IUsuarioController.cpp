@@ -214,6 +214,15 @@ void IUsuarioController::responderComentario(DTOComentario* dto, string textoPad
   cliente->agregarComentario(comentario);
 }
 
+void IUsuarioController::seleccionarCliente(string nickname) {
+    Usuario* usuario = this->sistema->usuarios.find(nickname)->second;
+    Cliente* cliente = dynamic_cast<Cliente*>(usuario);
+
+    if (cliente != nullptr) {
+        this->memoria->setCliente((cliente));
+    }
+}
+
 
 
 #endif
