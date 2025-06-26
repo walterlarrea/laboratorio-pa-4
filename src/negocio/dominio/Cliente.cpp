@@ -20,7 +20,7 @@ DTDireccion *Cliente::getDireccion() {
     return this->direccion;
 }
 
-map<string, Comentario*> Cliente::getComentarios() {
+map<string, Comentario*>& Cliente::getComentarios() {
   return this->comentarios;
 }
 void Cliente::eliminarComentario(Comentario* comentario) {

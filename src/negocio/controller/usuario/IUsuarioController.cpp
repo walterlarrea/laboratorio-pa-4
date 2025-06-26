@@ -196,19 +196,56 @@ set<DTOComentario*> IUsuarioController::getComentariosCliente(string nickCliente
   return resultado;
 }
 
-void IUsuarioController::eliminarComentario(string com) {
-  // Recupero el Cliente seleccionado anteriormente
-  Cliente* cliente = this->memoria->getCliente();
 
-  // Busca el comentario por clave de texto
-  Comentario* comentario = cliente->getComentarios().find(com)->second;
-  if (comentario != nullptr) {
-    // Si el comentario existe,
-    // es eliminado de memoria y de la lista de comentarios del cliente
-    cliente->eliminarComentario(comentario);
-    delete comentario;
+void IUsuarioController::eliminarComentario(string com) {
+  Cliente* cliente = this->memoria->getCliente();
+  if (!cliente) return;
+
+  auto& comentarios = cliente->getComentarios();
+  auto it = comentarios.find(com);
+  if (it != comentarios.end()) {
+    Comentario* comentario = it->second;
+    eliminarComentarioRecursivo(comentario);
   }
 }
+
+
+void IUsuarioController::eliminarComentarioRecursivo(Comentario* comentario) {
+  // Copia del set antes de borrar
+  set<Comentario*> respuestas = comentario->getRespuestas();
+  for (Comentario* respuesta : respuestas) {
+    eliminarComentarioRecursivo(respuesta);
+  }
+
+  // Eliminar del cliente
+  Cliente* cliente = comentario->getCliente();
+  if (cliente && cliente->getComentarios().count(comentario->getTexto())) {
+    cliente->eliminarComentario(comentario);
+  }
+
+  // Eliminar del producto
+  Producto* producto = comentario->getProducto();
+  if (producto) {
+    auto& comentarios = producto->getComentarios();
+    auto it = comentarios.find(comentario->getTexto());
+    if (it != comentarios.end()) {
+      comentarios.erase(it);
+    } else {
+      for (auto& par : comentarios) {
+        auto& respuestas = par.second->getRespuestas();
+        auto itResp = respuestas.find(comentario);
+        if (itResp != respuestas.end()) {
+          respuestas.erase(itResp);
+          break;
+        }
+      }
+    }
+  }
+
+  delete comentario;
+}
+
+
 
 void IUsuarioController::dejarComentario(DTOComentario* dto) {
   string nickCliente = dto->getCliente();
@@ -232,11 +269,17 @@ void IUsuarioController::responderComentario(DTOComentario* dto, string textoPad
 
   Comentario* comentario = new Comentario(dto->getTexto(), dto->getFecha(), cliente, producto);
 
-  Comentario* comentarioPadre = producto->getComentarios().at(textoPadre);
-  comentarioPadre->agregarRespuesta(comentario);
-
-  cliente->agregarComentario(comentario);
+  auto& comentarios = producto->getComentarios();
+  auto it = comentarios.find(textoPadre);
+  if (it != comentarios.end()) {
+    it->second->agregarRespuesta(comentario);
+    cliente->agregarComentario(comentario);
+  } else {
+    delete comentario;
+    cout << "Error: Comentario padre no encontrado." << endl;
+  }
 }
+
 
 void IUsuarioController::seleccionarCliente(string nickname) {
     Usuario* usuario = this->sistema->usuarios.find(nickname)->second;

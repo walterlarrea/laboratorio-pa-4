@@ -27,14 +27,13 @@ public:
     ~Comentario(); // Sería el eliminarComentario()
 
     // getInfoComentario ?? TODO
-    void eliminarRespuestas();
     void agregarRespuesta(Comentario* respuesta);
 
   string getTexto();
   DTFecha* getFecha();
   Cliente* getCliente();
   Producto* getProducto();
-  set<Comentario*> getRespuestas();
+  set<Comentario*>& getRespuestas();
 
   void setTexto(string texto);
   void setFecha(DTFecha* fecha);

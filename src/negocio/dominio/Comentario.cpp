@@ -9,18 +9,11 @@ Comentario::Comentario(string texto, DTFecha* fecha, Cliente* cliente, Producto*
 }
 
 Comentario::~Comentario() {
-  this->eliminarRespuestas();
 }
 
-
-// TODO Implementar ...
-void Comentario::eliminarRespuestas() {
-  // TODO
-}
 void Comentario::agregarRespuesta(Comentario* respuesta) {
   this->respuestas.insert(respuesta);
 }
-
 
 string Comentario::getTexto() {
   return this->texto;
@@ -34,8 +27,8 @@ Cliente* Comentario::getCliente() {
 Producto* Comentario::getProducto() {
   return this->producto;
 }
-set<Comentario*> Comentario::getRespuestas() {
-  return respuestas;
+set<Comentario*>& Comentario::getRespuestas() {
+  return this->respuestas;
 }
 
 void Comentario::setTexto(string texto) {
