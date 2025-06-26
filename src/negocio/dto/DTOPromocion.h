@@ -1,8 +1,10 @@
 #ifndef DTOPROMOCION_H
 #define DTOPROMOCION_H
-#include "DTOProdPromo.h"
-#include "../dt/DTFecha.h"
 #include <set>
+#include "../dt/DTFecha.h"
+#include "DTOProdPromo.h"
+
+#include "DTOVendedor.h"
 
 using namespace std;
 
@@ -15,6 +17,7 @@ private:
   double descuento;
   DTFecha* fechaVencimiento;
   set<DTOProdPromo*> prodPromos;
+  string vendedor;
 
 public:
   DTOPromocion();
@@ -26,7 +29,11 @@ public:
   double getDescuento();
   DTFecha* getFechaVencimiento();
   set<DTOProdPromo*> getProdPromos();
+  string getVendedor();
+  void setVendedor(string v);
   void addProdPromo(DTOProdPromo* prodPromo);
+
+  string toString();
 };
 
 

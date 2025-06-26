@@ -36,6 +36,7 @@ public:
     virtual set<string> getVendedoresNick();
     virtual DTOVendedor* getVendedor(string nickVendedor);
     virtual map<string, DTOProducto*> getProdVendedor(string vendedor);
+    virtual map<string, DTOProducto*> getProdVigentesVendedor(string vendedor);
     virtual set<DTOComentario*> getComentariosCliente(string nickCliente);
     virtual void eliminarComentario(string com);
     virtual void dejarComentario(DTOComentario* dto);

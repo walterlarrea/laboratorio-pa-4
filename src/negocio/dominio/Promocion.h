@@ -10,6 +10,10 @@
 
 using namespace std;
 
+class ProdPromo;
+class Vendedor;
+class Producto;
+
 class Promocion {
 
 private:
@@ -17,7 +21,8 @@ private:
   string descripcion;
   double descuento;
   DTFecha* fechaVencimiento;
-  map<string, ProdPromo*> prodPromos;
+  set<ProdPromo*> prodPromos;
+  Vendedor* vendedor;
 
 public:
   Promocion();
@@ -28,9 +33,13 @@ public:
   string getDescripcion();
   double getDescuento();
   DTFecha* getFechaVencimiento();
-  map<string, ProdPromo*> getProdPromos();
+  Vendedor* getVendedor();
+  void setVendedor(Vendedor* v);
+  set<ProdPromo*> getProdPromos();
   void addProdPromo(int cantMinima, Producto* prod);
   bool buscarExistencia(string codProd);
+  bool esVigente();
+
 };
 
 

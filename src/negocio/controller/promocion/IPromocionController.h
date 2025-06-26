@@ -20,6 +20,9 @@ public:
 
   bool buscarExistencia(string codProd);
   void altaPromocion(DTOPromocion* promocion);
+  map<string, DTOPromocion*> getPromociones();
+  map<string, DTOPromocion*> getPromocionesVigentes();
+  set<DTOProdPromo*> getPromoInfo(string nombrePromo);
 };
 
 

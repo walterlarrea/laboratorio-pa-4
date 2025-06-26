@@ -127,6 +127,7 @@ DTOVendedor *IUsuarioController::getVendedor(string nickVendedor) {
 }
 
 map<string, DTOProducto*> IUsuarioController::getProdVendedor(string vendedor) {
+
   Usuario* u = this->sistema->usuarios.find(vendedor)->second;
   Vendedor* v = dynamic_cast<Vendedor*>(u);
 
@@ -134,6 +135,7 @@ map<string, DTOProducto*> IUsuarioController::getProdVendedor(string vendedor) {
 
   for (pair<string,Producto*> par : v->getProductos()) {
     Producto* producto = par.second;
+
     DTOProducto* dt = new DTOProducto( producto->getCodigo(), producto->getStock(),
       producto->getPrecio(),producto->getNombre(), producto->getDescripcion(),
       producto->getCategoria());
@@ -142,6 +144,28 @@ map<string, DTOProducto*> IUsuarioController::getProdVendedor(string vendedor) {
     resultado.insert(make_pair(producto->getCodigo(),dt));
   }
 
+  return resultado;
+}
+
+map<string, DTOProducto*> IUsuarioController::getProdVigentesVendedor(string vendedor) {
+
+  Usuario* u = this->sistema->usuarios.find(vendedor)->second;
+  Vendedor* v = dynamic_cast<Vendedor*>(u);
+
+  map<string, DTOProducto*> resultado;
+
+  for (pair<string,Producto*> par : v->getProductos()) {
+    Producto* producto = par.second;
+
+    if ( (producto->estaEnPromoVigente()) == false) {
+
+      DTOProducto* dt = new DTOProducto( producto->getCodigo(), producto->getStock(),
+        producto->getPrecio(),producto->getNombre(), producto->getDescripcion(), producto->getCategoria());
+
+      resultado.insert(make_pair(producto->getCodigo(),dt));
+    }
+
+  }
 
   return resultado;
 }

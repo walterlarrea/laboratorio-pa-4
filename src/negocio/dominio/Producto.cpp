@@ -42,6 +42,11 @@ void Producto::setVendedor(Vendedor* v) {
 Vendedor* Producto::getVendedor() {
   return this->vendedor;
 }
+
+set<ProdPromo*> Producto::getProdPromos() {
+  return this->prodPromos;
+}
+
 map<string, Comentario*>& Producto::getComentarios() {
 return this->comentarios;
 }
@@ -54,4 +59,17 @@ void Producto::disminuirStock(int cantidad) {
   this->stock -= cantidad;
 }
 
+void Producto::addProdPromo(ProdPromo* prodPromo) {
+  this->prodPromos.insert(prodPromo);
+}
 
+bool Producto::estaEnPromoVigente() {
+  bool aux = false;
+  for (auto& prodPromo : this->getProdPromos()) {
+    if (prodPromo->estaEnPromoVigente()) {
+      aux = true; // Si está en una promo vigente retorna true
+      break;
+    }
+  }
+  return aux;
+}

@@ -61,7 +61,6 @@ set<DTOProducto*> IProductoController::obtenerProductos() {
   }
 
   return retorno;
-
 }
 
 DTOProducto* IProductoController::obtenerInfoProducto(string nombreProd) {

@@ -11,6 +11,8 @@ using namespace std;
 
 class CompraProd;
 class Cliente;
+class Producto;
+
 class Compra {
 private:
   string codigo;

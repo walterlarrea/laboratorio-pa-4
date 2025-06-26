@@ -1,13 +1,15 @@
 #ifndef PRODUCTO_H
 #define PRODUCTO_H
 
-#include<string>
-#include"../enums/ECatProducto.h"
-#include "Vendedor.h"
+#include <string>
+#include "../enums/ECatProducto.h"
 #include "Comentario.h"
+#include "ProdPromo.h"
+#include "Vendedor.h"
 
 class Vendedor;
 class Comentario;
+class ProdPromo;
 
 using namespace std;
 
@@ -21,6 +23,7 @@ private:
   ECatProducto* categoria;
   Vendedor* vendedor;
   map<string, Comentario*> comentarios;
+  set<ProdPromo*> prodPromos;
 
 public:
   Producto();
@@ -35,11 +38,14 @@ public:
   ECatProducto* getCategoria();
   Vendedor* getVendedor();
   map<string, Comentario*>& getComentarios();
+  set<ProdPromo*> getProdPromos();
   void agregarComentario(Comentario* c);
 
+  void addProdPromo(ProdPromo* prodPromo);
   void setVendedor(Vendedor* v);
   bool vendedorIgualA(string nickVend);
   void disminuirStock(int cantidad);
+  bool estaEnPromoVigente();
 
   ~Producto();
 };

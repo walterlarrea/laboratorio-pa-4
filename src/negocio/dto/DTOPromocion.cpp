@@ -32,6 +32,18 @@ set<DTOProdPromo*> DTOPromocion::getProdPromos() {
    return this->prodPromos;
  }
 
+string DTOPromocion::getVendedor() {
+   return this->vendedor;
+ }
+
+void DTOPromocion::setVendedor(string v) {
+   this->vendedor = v;
+ }
+
 void DTOPromocion::addProdPromo(DTOProdPromo* prodPromo) {
    this->prodPromos.insert(prodPromo);
+ }
+
+string DTOPromocion::toString() {
+   return this->nombre + " - " +  this->descripcion + " - " + to_string(this->descuento) + " - " + this->fechaVencimiento->toString();
  }
