@@ -12,10 +12,14 @@ private:
   IProducto *iproducto;
   IUsuario *iusuario;
 
+  DTOPromocion* ingresarPromocion();
+  void ingresarVendedor(DTOPromocion* promocion);
+  void ingresarProdPromos(DTOPromocion* promocion, map<string, DTOProducto*> productos);
+
 public:
   AltaPromocion();
   void altaPromocion();
-  ~AltaPromocion();
+  virtual ~AltaPromocion();
 };
 
 

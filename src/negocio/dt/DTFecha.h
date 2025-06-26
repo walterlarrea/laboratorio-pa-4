@@ -17,6 +17,7 @@ public:
   ~DTFecha();
 
   string toString();
+  bool esVigente();
 };
 
 

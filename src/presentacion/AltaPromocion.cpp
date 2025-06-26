@@ -24,15 +24,39 @@ AltaPromocion::~AltaPromocion() {
 void AltaPromocion::altaPromocion() {
   cout << "--- Alta de Promocion ---" << endl;
 
+  DTOPromocion* promocion = ingresarPromocion();
+
+  ingresarVendedor(promocion);
+
+  map<string, DTOProducto*> productos = this->iusuario->getProdVigentesVendedor(promocion->getVendedor());
+
+  if (productos.empty()) {
+    cout << "No hay productos disponibles del vendedor." << endl << endl;
+  } else {
+
+    ingresarProdPromos(promocion, productos);
+
+    cout << "Promocion creada ";
+    this->ipromocion->altaPromocion(promocion);
+  }
+
+
+}
+
+
+DTOPromocion* AltaPromocion::ingresarPromocion() {
+
   string nombre;
   string descr;
   double desc;
   int dia, mes, anio;
 
   cout << "Ingresar nombre:" << endl;
+  cin.clear();
   cin.ignore();
   getline(cin, nombre);
   cout << "Ingresar descripcion:" << endl;
+  cin.clear();
   cin.ignore();
   getline(cin, descr);
   cout << "Ingresar descuento:" << endl;
@@ -40,6 +64,11 @@ void AltaPromocion::altaPromocion() {
   cout << "Ingresar fecha de vencimiento:" << endl;
   cin >> dia >> mes >> anio;
   DTFecha* fechaVenc = new DTFecha(dia, mes, anio);
+
+  return new DTOPromocion(nombre, descr, desc, fechaVenc);
+}
+
+void AltaPromocion::ingresarVendedor(DTOPromocion* promocion) {
 
   set<string> nombreVendedores = this->iusuario->getVendedoresNick();
   cout << endl <<"Lista de vendedores: " << endl;
@@ -49,48 +78,44 @@ void AltaPromocion::altaPromocion() {
   }
 
   string vendedorSeleccionado;
-  cout << endl << "Ingrese el nombre del vendedor: ";
-  cin >> vendedorSeleccionado;
 
-  map<string, DTOProducto*> productos = this->iusuario->getProdVendedor(vendedorSeleccionado);
+  while (!nombreVendedores.contains(vendedorSeleccionado)) {
+    cout << "Escriba el nombre del vendedor deseado: ";
+    cin >> vendedorSeleccionado;
 
-  // Buscando existencias vigentes del prod en otra promo
-  for (const auto producto : productos) {
-    if (this->ipromocion->buscarExistencia(producto.second->getCodigo())) {
-      cout << "El producto " << producto.second->getCodigo() << " ya está siendo utilizado en otra promo"<< endl;
-      productos.erase(producto.first);
+    if (!nombreVendedores.contains(vendedorSeleccionado)) {
+      cout << "Nombre erroneo, intente nuevamente" << endl;
     }
   }
 
-  if (productos.empty()) {
-    cout << "No hay productos disponibles del vendedor." << endl << endl;
-    return ;
-  }
+  promocion->setVendedor(vendedorSeleccionado);
+}
 
-  DTOPromocion* promocion = new DTOPromocion(nombre, descr, desc, fechaVenc);
+void AltaPromocion::ingresarProdPromos(DTOPromocion* promocion, map<string, DTOProducto*> productos) {
+
   string prodSeleccionado;
   int aux;
   int cant;
   bool salir = false;
 
-  while ( !salir && !productos.empty()) {
+  do {
 
-    cout << "Productos disponibles del vendedor " << vendedorSeleccionado << " : " << endl << endl;
+    cout << "Productos disponibles del vendedor " << promocion->getVendedor() << " : " << endl << endl;
 
     for (const auto producto : productos) {
       cout << producto.second->getCodigo() << " - " << producto.second->getNombre() << endl;
     }
 
-    cout << endl << "Ingrese el codigo del producto: ";
+    cout << endl << "Ingrese el codigo del producto: " << endl;
     cin >> prodSeleccionado;
 
     if (!productos.contains(prodSeleccionado)){
       cout<< "Codigo invalido, intente nuevamente" << endl ;
     } else {
-      cout << endl << "Ingrese la cantidad: ";
+      cout << endl << "Ingrese la cantidad: " << endl;
       cin >> cant;
 
-      promocion->addProdPromo( new DTOProdPromo(prodSeleccionado, cant) );
+      promocion->addProdPromo( new DTOProdPromo(productos.find(prodSeleccionado)->second, cant) );
 
       productos.erase(prodSeleccionado);
 
@@ -108,7 +133,6 @@ void AltaPromocion::altaPromocion() {
         salir = true;
       }
     }
-  }
-  cout << "Promocion creada ";
-  this->ipromocion->altaPromocion(promocion);
+  } while ( !salir && !productos.empty());
+
 }

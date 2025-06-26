@@ -7,7 +7,7 @@ using namespace std;
 
 DTOProducto::DTOProducto() {}
 
-DTOProducto::DTOProducto( // TODO eliminar, este no pasa el vendedor
+DTOProducto::DTOProducto(
     string codigo, int stock, double precio,
     string nombre, string descripcion, ECatProducto* categoria) {
 

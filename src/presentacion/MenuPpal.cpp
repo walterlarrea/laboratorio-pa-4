@@ -7,6 +7,7 @@
 #include "AltaProducto.h"
 #include "AltaPromocion.h"
 #include "ConsultarProducto.h"
+#include "ConsultarPromocion.h"
 #include "ListarProductos.h"
 
 #include "EliminarComentario.h"
@@ -23,8 +24,7 @@ MenuPpal::~MenuPpal() = default;
 void MenuPpal::mostrarMenu() {
   int op = 0;
   do {
-    cout << endl;
-    cout << "*** Menu principal ***" << endl;
+    cout << endl << endl << "*** Menu principal ***" << endl;
     cout << "1) Alta Producto" << endl;
     cout << "2) Listar Productos" << endl;
     cout << "3) Consultar Producto" << endl;
@@ -84,7 +84,8 @@ void MenuPpal::mostrarMenu() {
       }
       break;
       case 9: {
-
+        ConsultarPromocion consultarPromocion;
+        consultarPromocion.consultarPromocion();
       }
       break;
       case 10: {

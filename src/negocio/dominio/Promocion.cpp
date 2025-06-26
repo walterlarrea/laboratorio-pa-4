@@ -29,25 +29,29 @@ DTFecha* Promocion::getFechaVencimiento() {
    return this->fechaVencimiento;
  }
 
-map<string, ProdPromo*> Promocion::getProdPromos() {
+set<ProdPromo*> Promocion::getProdPromos() {
    return this->prodPromos;
+ }
+
+Vendedor* Promocion::getVendedor() {
+   return this->vendedor;
  }
 
 void Promocion::addProdPromo(int cantMinima, Producto *prod) {
    if (cantMinima > 0 & prod != nullptr) {
-    ProdPromo *prodPromo = new ProdPromo(cantMinima, prod);
-     this->prodPromos.insert(make_pair(prod->getCodigo(), prodPromo));
+    ProdPromo *prodPromo = new ProdPromo(cantMinima, prod, this);
+     this->prodPromos.insert(prodPromo);
    }
  }
 
 bool Promocion::buscarExistencia(string codProd) {
-   map<string, ProdPromo*> prodPromos = this->getProdPromos();
-   bool vacio = prodPromos.find(codProd)->first.empty();
+   // TODO eliminar
+ }
 
-   if ( vacio ) {
-     return false;
-   } else {
-     return true;
-   }
+void Promocion::setVendedor(Vendedor* v) {
+   this->vendedor = v;
+ }
 
+bool Promocion::esVigente() {
+   return this->fechaVencimiento->esVigente();
  }

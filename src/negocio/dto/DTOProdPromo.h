@@ -3,20 +3,22 @@
 #define DTOPRODPROMO_H
 
 #include <string>
+#include "../dto/DTOProducto.h"
 
 using namespace std;
 
 class DTOProdPromo {
 private:
-  string codProd;
+  DTOProducto* prod;
   int cant;
 public:
   DTOProdPromo();
-  DTOProdPromo(string codProd, int cant);
+  DTOProdPromo(DTOProducto* producto, int cant);
   ~DTOProdPromo();
 
-  string getProd();
+  DTOProducto* getProd();
   int getCant();
+  string toString();
 };
 
 
