@@ -5,10 +5,11 @@
 #include "../negocio/controller/producto/IProductoController.h"
 #include "../negocio/dto/DTOComentario.h"
 #include "DejarComentario.h"
+#include "../negocio/dt/DTFecha.h"
 
 #include <iostream>
 #include <vector>
-
+#include <ctime>
 
 using namespace std;
 
@@ -24,7 +25,7 @@ DejarComentario::~DejarComentario() {
 }
 
 void DejarComentario::dejarComentario() {
-  DTFecha* fecha = new DTFecha(12, 2, 2025);
+  DTFecha* fecha = obtenerFechaActual();
   set<string> usuarios = iusuario->getClientesNick();
 
   if (usuarios.empty()) {

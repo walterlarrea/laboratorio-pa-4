@@ -28,7 +28,7 @@ public:
 
     DTDireccion* getDireccion();
     string getCiudad();
-    map<string, Comentario*> getComentarios();
+    map<string, Comentario*>& getComentarios();
 
     void eliminarComentario(Comentario* comentario);
     void agregarCompra(Compra* compra);

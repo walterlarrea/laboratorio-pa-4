@@ -39,6 +39,7 @@ public:
     virtual map<string, DTOProducto*> getProdVigentesVendedor(string vendedor);
     virtual set<DTOComentario*> getComentariosCliente(string nickCliente);
     virtual void eliminarComentario(string com);
+    virtual void eliminarComentarioRecursivo(Comentario* com);
     virtual void dejarComentario(DTOComentario* dto);
     virtual void responderComentario(DTOComentario* dto, string textopadre);
 

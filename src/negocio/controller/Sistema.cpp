@@ -65,6 +65,7 @@ void Sistema::inicializarDatos() {
 
   Comentario* com1c1 = new Comentario("Muy bueno", new DTFecha(10, 06, 2025), cliente1, prod1);
   cliente1->agregarComentario(com1c1);
+  prod1->agregarComentario(com1c1);
 
   this->usuarios.insert(pair(cliente1->getNickName(), cliente1));
   this->usuarios.insert(pair(vendedor1->getNickName(), vendedor1));
