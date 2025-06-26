@@ -25,8 +25,6 @@ DTFecha* obtenerFechaActual() {
 
 
 bool DTFecha::esVigente() {
-  time_t t = time(nullptr);
-  tm* now = localtime(&t);
   DTFecha* fechaActual = obtenerFechaActual();
   if (this->anio > fechaActual->anio) return true;
   if (this->anio < fechaActual->anio) return false;

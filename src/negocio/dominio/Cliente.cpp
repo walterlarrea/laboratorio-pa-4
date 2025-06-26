@@ -26,10 +26,13 @@ map<string, Comentario*>& Cliente::getComentarios() {
 void Cliente::eliminarComentario(Comentario* comentario) {
   this->comentarios.erase(comentario->getTexto());
 }
-void Cliente::agregarCompra(Compra* compra) {
-
+void Cliente::agregarCompra(Compra* compra, string codigo) {
+  this->compras.insert(make_pair(codigo,compra));
 }
 void Cliente::agregarComentario(Comentario* comentario) {
   this->comentarios.insert(pair(comentario->getTexto(), comentario));
 }
 
+map<string, Compra*>& Cliente::getCompras() {
+  return this->compras;
+}

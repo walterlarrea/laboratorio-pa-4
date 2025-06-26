@@ -8,7 +8,7 @@ Compra::Compra(Cliente* cliente, string codigo, DTFecha* fecha) {
   this->codigo = codigo;
   this->fecha = fecha;
   this->cliente = cliente;
-  cliente->agregarCompra(this);
+  cliente->agregarCompra(this, codigo);
 }
 Compra::~Compra() {
   delete this->fecha;

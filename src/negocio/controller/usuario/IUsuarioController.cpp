@@ -290,6 +290,51 @@ void IUsuarioController::seleccionarCliente(string nickname) {
     }
 }
 
+DTOUsuario* IUsuarioController::obtenerExpedienteUsuario(string usuarioSeleccionado) {
+  DTOUsuario* resultado = nullptr;
+
+  auto& usuarios = this->sistema->usuarios;
+  Usuario* u = usuarios.find(usuarioSeleccionado)->second;
+
+  if (Cliente* c = dynamic_cast<Cliente*>(u)) {
+
+    // Datos básicos de cliente
+    DTOCliente* dtoCliente = new DTOCliente(
+      c->getNickName(),
+      c->getPassword(),
+      c->getFechaNacimiento(),
+      c->getDireccion(),
+      c->getCiudad()
+    );
+
+    // Creando las compras
+    for (const auto& par : c->getCompras()) {
+      Compra* compra = par.second;
+
+      DTOCompra* dtoCompra = new DTOCompra(
+        compra->getCodigo(),
+        compra->getMontoFinal(),
+        compra->getFecha()
+      );
+
+      // Armando las lineas
+      for (const auto& compraProd : compra->getLineasProducto()) {
+        Producto* prod = compraProd->getProducto();
+        DTOProducto* dtoProd = new DTOProducto(prod->getCodigo(), prod->getStock(), prod->getPrecio(), prod->getNombre(), prod->getDescripcion(), prod->getCategoria());
+        dtoCompra->addCompraProd(new DTCompraProd(compraProd->getCantidad(), compraProd->getEnviado(), compraProd->getMonto(), dtoProd));
+      }
+
+      dtoCliente->addCompra(dtoCompra);
+    }
+
+    resultado = dtoCliente;
+
+  } else if (Vendedor* v = dynamic_cast<Vendedor*>(u)) {
+    resultado = new DTOVendedor(v->getNickName(), v->getPassword(), v->getFechaNacimiento(), v->getRut());
+  }
+
+  return resultado;
+}
 
 
 #endif
