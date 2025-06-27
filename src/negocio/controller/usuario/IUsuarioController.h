@@ -42,6 +42,7 @@ public:
     virtual void eliminarComentarioRecursivo(Comentario* com);
     virtual void dejarComentario(DTOComentario* dto);
     virtual void responderComentario(DTOComentario* dto, string textopadre);
+    virtual DTOUsuario* obtenerExpedienteUsuario(string usuarioSeleccionado);
 
     virtual void seleccionarCliente(string nickname);
 };

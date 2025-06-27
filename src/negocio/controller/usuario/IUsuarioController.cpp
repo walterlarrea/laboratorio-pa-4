@@ -290,6 +290,86 @@ void IUsuarioController::seleccionarCliente(string nickname) {
     }
 }
 
+DTOUsuario* IUsuarioController::obtenerExpedienteUsuario(string usuarioSeleccionado) {
+  DTOUsuario* resultado = nullptr;
+
+  auto& usuarios = this->sistema->usuarios;
+  Usuario* u = usuarios.find(usuarioSeleccionado)->second;
+
+  if (Cliente* c = dynamic_cast<Cliente*>(u)) {
+
+    // Datos básicos de cliente
+    DTOCliente* dtoCliente = new DTOCliente(
+      c->getNickName(),
+      c->getPassword(),
+      c->getFechaNacimiento(),
+      c->getDireccion(),
+      c->getCiudad()
+    );
+
+    // Creando las compras
+    for (const auto& par : c->getCompras()) {
+      Compra* compra = par.second;
+
+      DTOCompra* dtoCompra = new DTOCompra(
+        compra->getCodigo(),
+        compra->getMontoFinal(),
+        compra->getFecha()
+      );
+
+      // Armando las lineas
+      for (const auto& compraProd : compra->getLineasProducto()) {
+        Producto* prod = compraProd->getProducto();
+        DTOProducto* dtoProd = new DTOProducto(prod->getCodigo(), prod->getStock(), prod->getPrecio(), prod->getNombre(), prod->getDescripcion(), prod->getCategoria());
+        dtoCompra->addCompraProd(new DTCompraProd(compraProd->getCantidad(), compraProd->getEnviado(), compraProd->getMonto(), dtoProd));
+      }
+
+      dtoCliente->addCompra(dtoCompra);
+    }
+
+    resultado = dtoCliente;
+
+  } else if (Vendedor* v = dynamic_cast<Vendedor*>(u)) {
+
+    DTOVendedor* dtoVendedor = new DTOVendedor(
+      v->getNickName(),
+      v->getPassword(),
+      v->getFechaNacimiento(),
+      v->getRut());
+
+    // Productos del vendedor
+    for (const auto& par : v->getProductos()) {
+      Producto* prod = par.second;
+      cout << prod->getCodigo() << endl;
+      dtoVendedor->addProducto(new DTOProducto(prod->getCodigo(), prod->getStock(), prod->getPrecio(), prod->getNombre(), prod->getDescripcion(), prod->getCategoria(), dtoVendedor));
+    }
+
+    // Promociones vigentes del vendedor
+    for (const auto& promocion : v->getPromociones()) {
+
+      if (promocion->esVigente()) {
+
+        DTOPromocion* p = new DTOPromocion(promocion->getNombre(), promocion->getDescripcion(),
+            promocion->getDescuento(), promocion->getFechaVencimiento());
+        p->setVendedor(dtoVendedor->getNickName());
+
+        for (ProdPromo* prodPromo : promocion->getProdPromos()) {
+          DTOProducto* dtProd = new DTOProducto(prodPromo->getProducto()->getCodigo(), prodPromo->getProducto()->getStock(), prodPromo->getProducto()->getPrecio(), prodPromo->getProducto()->getNombre(), prodPromo->getProducto()->getDescripcion(), prodPromo->getProducto()->getCategoria(), dtoVendedor);
+          p->addProdPromo(new DTOProdPromo(dtProd, prodPromo->getCantMinima()));
+        }
+
+        dtoVendedor->addPromocion(p);
+
+      }
+
+    }
+
+    resultado = dtoVendedor;
+
+  }
+
+  return resultado;
+}
 
 
 #endif

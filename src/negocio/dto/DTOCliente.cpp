@@ -26,9 +26,19 @@ DTDireccion* DTOCliente::getDireccion() {
     return this->direccion;
 }
 
+set<DTOCompra*> DTOCliente::getCompras() {
+  return this->compras;
+}
+
+void DTOCliente::addCompra(DTOCompra *compra) {
+  this->compras.insert(compra);
+}
+
+
 string DTOCliente::toString() const {
     return "Cliente - Nick: " + this->nickName +
            ", Fecha de nacimiento: " + this->fechaNacimiento->toString() +
                ", Ciudad: " + this->ciudadResidencia +
            ", Direccion: " + this->direccion->toString();
 }
+

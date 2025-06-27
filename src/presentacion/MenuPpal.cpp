@@ -3,6 +3,7 @@
 #include <iostream>
 #include "AltaUsuario.h"
 #include "ListarUsuarios.h"
+#include "ExpedienteUsuario.h"
 
 #include "AltaProducto.h"
 #include "AltaPromocion.h"
@@ -35,6 +36,7 @@ void MenuPpal::mostrarMenu() {
     cout << "8) Alta Promocion" << endl;
     cout << "9) Consultar Promocion" << endl;
     cout << "10) Realizar Compra" << endl;
+    cout << "11) Expediente de Usuario" << endl;
     cout << "0) Salir " << endl;
     cout << "Ingrese una opcion: " << endl;
 
@@ -91,6 +93,11 @@ void MenuPpal::mostrarMenu() {
       case 10: {
         RealizarCompra realizarCompra;
         realizarCompra.realizarCompra();
+      }
+      break;
+      case 11: {
+        ExpedienteUsuario expedienteUsuario;
+        expedienteUsuario.expedienteUsuario();
       }
       break;
       default:

@@ -9,14 +9,18 @@
 
 #include "../dt/DTFecha.h"
 #include "DTOUsuario.h"
+#include "DTOCompra.h"
 #include "../dt/DTDireccion.h"
+#include <set>
+
+using namespace std;
 
 class DTOCliente : public DTOUsuario{
 private:
     DTDireccion* direccion;
     string ciudadResidencia;
    // map<string, Comentario*> comentarios;
-  //  map<string, Compra*> compras;
+    set<DTOCompra*> compras;
 
 public:
     DTOCliente();
@@ -24,7 +28,10 @@ public:
 
     string getCiudad();
     DTDireccion* getDireccion();
-    string toString() const;
+    string toString() const override;
+
+    set<DTOCompra*> getCompras();
+    void addCompra(DTOCompra* compra);
 
    // map<string, Comentario*> getComentarios();
 

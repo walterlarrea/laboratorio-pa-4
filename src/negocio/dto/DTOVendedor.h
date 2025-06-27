@@ -4,27 +4,35 @@
 
 #ifndef DTOVENDEDOR_H
 #define DTOVENDEDOR_H
+#include <set>
 #include "../dt/DTFecha.h"
-#include "DTOUsuario.h"
 #include "DTOProducto.h"
+#include "DTOUsuario.h"
+
+#include "DTOPromocion.h"
 
 class DTOProducto;
+class DTOPromocion;
 
 class DTOVendedor : public DTOUsuario {
 
 private:
-    string rut;
-    //map<string,DTOProducto*> productos;
+  string rut;
+  set<DTOProducto*> productos;
+  set<DTOPromocion*> promociones;
 
 public:
-    DTOVendedor();
-    DTOVendedor(string nickName, string password, DTFecha *fechaNacimiento, string rut);
+  DTOVendedor();
+  DTOVendedor(string nickName, string password, DTFecha *fechaNacimiento, string rut);
+  ~DTOVendedor();
 
-    string getRut();
-    // addProducto(Producto* producto);
-    //map<string,DTOProducto*> getProductos();
-   string toString() const override;
-    ~DTOVendedor();
+  string getRut();
+  void addProducto(DTOProducto* producto);
+  set<DTOProducto*> getProductos();
+  void addPromocion(DTOPromocion* promocion);
+  set<DTOPromocion*> getPromociones();
+  string toString() const override;
+
 };
 
 

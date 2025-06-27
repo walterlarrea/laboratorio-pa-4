@@ -29,6 +29,7 @@ public:
     virtual void eliminarComentario(string com)=0;
     virtual void dejarComentario(DTOComentario* dto) = 0;
     virtual void responderComentario(DTOComentario* dto, string textoPadre) = 0;
+    virtual DTOUsuario* obtenerExpedienteUsuario(string usuarioSeleccionado) = 0;
 
     virtual void seleccionarCliente(string nickname)=0;
 };

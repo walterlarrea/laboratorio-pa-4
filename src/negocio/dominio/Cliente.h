@@ -17,24 +17,25 @@ class Producto;
 
 class Cliente : public Usuario{
 private:
-    DTDireccion* direccion;
-    string ciudadResidencia;
-    map<string, Comentario*> comentarios;
-    map<string, Compra*> compras;
+  DTDireccion* direccion;
+  string ciudadResidencia;
+  map<string, Comentario*> comentarios;
+  map<string, Compra*> compras;
 
 public:
-    Cliente();
-    Cliente(string nickname, string password, DTFecha* fechaNacimiento, DTDireccion* direccion, string ciudadResidencia);
+  Cliente();
+  Cliente(string nickname, string password, DTFecha* fechaNacimiento, DTDireccion* direccion, string ciudadResidencia);
 
-    DTDireccion* getDireccion();
-    string getCiudad();
-    map<string, Comentario*>& getComentarios();
+  DTDireccion* getDireccion();
+  string getCiudad();
+  map<string, Comentario*>& getComentarios();
+  map<string, Compra*>& getCompras();
 
-    void eliminarComentario(Comentario* comentario);
-    void agregarCompra(Compra* compra);
-    void agregarComentario(Comentario* comentario);
+  void eliminarComentario(Comentario* comentario);
+  void agregarCompra(Compra* compra, string codigo);
+  void agregarComentario(Comentario* comentario);
 
-    ~Cliente();
+  ~Cliente();
 };
 
 
