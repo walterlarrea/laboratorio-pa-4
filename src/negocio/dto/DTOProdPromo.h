@@ -5,6 +5,8 @@
 #include <string>
 #include "../dto/DTOProducto.h"
 
+class DTOProducto;
+
 using namespace std;
 
 class DTOProdPromo {

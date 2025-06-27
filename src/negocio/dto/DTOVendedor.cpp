@@ -19,14 +19,23 @@ string DTOVendedor::getRut() {
     return this->rut;
 }
 
-/*
-map<string,DTOProducto*> DTOVendedor::getProductos() {
+set<DTOProducto*> DTOVendedor::getProductos() {
   return this->productos;
 }
 
-*/
+set<DTOPromocion*> DTOVendedor::getPromociones() {
+  return this->promociones;
+}
 
-std::string DTOVendedor::toString() const {
+void DTOVendedor::addProducto(DTOProducto *producto) {
+  this->productos.insert(producto);
+}
+
+void DTOVendedor::addPromocion(DTOPromocion *promocion) {
+  this->promociones.insert(promocion);
+}
+
+string DTOVendedor::toString() const {
     return "Vendedor - Nick: " + this->nickName +
            ", RUT: " + this->rut +
            ", Fecha de nacimiento: " + this->fechaNacimiento->toString();

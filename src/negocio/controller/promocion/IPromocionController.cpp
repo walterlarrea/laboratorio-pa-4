@@ -44,6 +44,7 @@ void IPromocionController::altaPromocion(DTOPromocion *promocion) {
 
   nuevaPromo->setVendedor(v);
   this->sistema->promociones.insert(make_pair(nuevaPromo->getNombre(), nuevaPromo));
+  v->addPromocion(nuevaPromo);
 
 }
 

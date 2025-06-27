@@ -5,12 +5,14 @@
 #include "Usuario.h"
 
 class Producto;
+class Promocion;
 
 class Vendedor : public Usuario {
 
 private:
     string rut;
     map<string,Producto*> productos;
+    set<Promocion*> promociones;
 
 public:
     Vendedor();
@@ -19,6 +21,8 @@ public:
     string getRut();
     void addProducto(Producto* producto);
     map<string,Producto*> getProductos();
+    set<Promocion*> getPromociones();
+    void addPromocion(Promocion* promocion);
 
     ~Vendedor();
 };

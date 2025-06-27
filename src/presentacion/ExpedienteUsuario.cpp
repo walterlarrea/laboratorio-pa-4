@@ -116,5 +116,21 @@ void ExpedienteUsuario::listarExpedienteCliente(DTOCliente* c) {
 }
 
 void ExpedienteUsuario::listarExpedienteVendedor(DTOVendedor* v) {
-  cout << "soy v";
+  cout << "Productos en venta: " << endl;
+
+  for (DTOProducto* prod : v->getProductos()) {
+    cout << prod->toString() << endl;
+  }
+
+  cout << endl << "Promociones vigentes: " << endl;
+
+  for (DTOPromocion* promo : v->getPromociones()) {
+    cout << endl << promo->toString() << endl;
+
+    cout << "Productos: " << endl;
+
+    for (DTOProdPromo* prodPromo : promo->getProdPromos()) {
+      cout << prodPromo->toString() << endl;
+    }
+  }
 }
