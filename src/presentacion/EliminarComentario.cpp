@@ -22,6 +22,8 @@ EliminarComentario::EliminarComentario() {
 }
 
 void EliminarComentario::eliminarComentario() {
+  cout << "--- Eliminar Comentario ---" << endl << endl;
+
   set<string> nombreClientes = this->iusuario->getClientesNick();
 
   if (nombreClientes.size() > 0){

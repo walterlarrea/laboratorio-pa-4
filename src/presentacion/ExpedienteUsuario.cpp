@@ -13,6 +13,7 @@ ExpedienteUsuario::~ExpedienteUsuario() {
 }
 
 void ExpedienteUsuario::expedienteUsuario() {
+  cout << "--- Expediente de Usuario ---" << endl << endl;
 
   string usuarioSeleccionado = ingresarUsuario();
   if (!usuarioSeleccionado.empty()) {

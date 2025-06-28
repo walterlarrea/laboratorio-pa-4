@@ -27,18 +27,18 @@ void MenuPpal::mostrarMenu() {
   int op = 0;
   do {
     cout << endl << endl << "*** Menu principal ***" << endl;
-    cout << "1) Alta Producto" << endl;
-    cout << "2) Listar Productos" << endl;
-    cout << "3) Consultar Producto" << endl;
-    cout << "4) Alta Usuario" << endl;
-    cout << "5) Listar Usuarios" << endl;
-    cout << "6) Eliminar Comentario" << endl;
-    cout << "7) Dejar Comentario" << endl;
-    cout << "8) Alta Promocion" << endl;
-    cout << "9) Consultar Promocion" << endl;
-    cout << "10) Realizar Compra" << endl;
+    cout << "1) Alta Usuario" << endl;
+    cout << "2) Listar Usuarios" << endl;
+    cout << "3) Alta Producto" << endl;
+    cout << "4) Consultar Producto" << endl;
+    cout << "5) Craer Promocion" << endl;
+    cout << "6) Consultar Promocion" << endl;
+    cout << "7) Realizar Compra" << endl;
+    cout << "8) Dejar Comentario" << endl;
+    cout << "9) Eliminar Comentario" << endl;
+    cout << "10) Enviar Producto" << endl;
     cout << "11) Expediente de Usuario" << endl;
-    cout << "12) Enviar Producto" << endl;
+    cout << "12) Listar Productos - No tiene CU" << endl;
     cout << "0) Salir " << endl;
     cout << "Ingrese una opcion: " << endl;
 
@@ -48,53 +48,53 @@ void MenuPpal::mostrarMenu() {
       case 0:
         break;
       case 1: {
-        AltaProducto altaProducto;
-        altaProducto.altaProducto();
-      }
-      break;
-      case 2: {
-        ListarProductos listarProductos;
-        listarProductos.listarProductos();
-      }
-      break;
-      case 3: {
-        ConsultarProducto consultarProducto;
-        consultarProducto.consultarProducto();
-      }
-      break;
-      case 4: {
         AltaUsuario altaUsuario;
         altaUsuario.altaUsuario();
       }
       break;
-      case 5: {
+      case 2: {
         ListarUsuarios listarUsuarios;
         listarUsuarios.listarUsuarios();
       }
       break;
-      case 6: {
-        EliminarComentario eliminarComentario;
-        eliminarComentario.eliminarComentario();
+      case 3: {
+        AltaProducto altaProducto;
+        altaProducto.altaProducto();
       }
       break;
-      case 7: {
-        DejarComentario dejarComentario;
-        dejarComentario.dejarComentario();
+      case 4: {
+        ConsultarProducto consultarProducto;
+        consultarProducto.consultarProducto();
       }
       break;
-      case 8: {
+      case 5: {
         AltaPromocion altaPromocion;
         altaPromocion.altaPromocion();
       }
       break;
-      case 9: {
+      case 6: {
         ConsultarPromocion consultarPromocion;
         consultarPromocion.consultarPromocion();
       }
       break;
-      case 10: {
+      case 7: {
         RealizarCompra realizarCompra;
         realizarCompra.realizarCompra();
+      }
+      break;
+      case 8: {
+        DejarComentario dejarComentario;
+        dejarComentario.dejarComentario();
+      }
+      break;
+      case 9: {
+        EliminarComentario eliminarComentario;
+        eliminarComentario.eliminarComentario();
+      }
+      break;
+      case 10: {
+        EnviarProducto enviarProducto;
+        enviarProducto.enviarProducto();
       }
       break;
       case 11: {
@@ -103,8 +103,8 @@ void MenuPpal::mostrarMenu() {
       }
       break;
       case 12: {
-        EnviarProducto enviarProducto;
-        enviarProducto.enviarProducto();
+        ListarProductos listarProductos;
+        listarProductos.listarProductos();
       }
       break;
       default:

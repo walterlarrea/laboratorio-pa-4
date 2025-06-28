@@ -64,6 +64,10 @@ set<DTOProducto*> IProductoController::obtenerProductos() {
 }
 
 DTOProducto* IProductoController::obtenerInfoProducto(string nombreProd) {
+  if (!this->verificarCodigo(nombreProd)) {
+    return nullptr;
+  }
+
   Producto* producto = this->sistema->productos.at(nombreProd);
 
   return crearDTOProducto(producto);

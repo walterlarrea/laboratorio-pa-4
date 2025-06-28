@@ -25,6 +25,8 @@ DejarComentario::~DejarComentario() {
 }
 
 void DejarComentario::dejarComentario() {
+  cout << "--- Dejar Comentario ---" << endl << endl;
+
   DTFecha* fecha = DTFecha::obtenerFechaActual();
   set<string> usuarios = iusuario->getClientesNick();
 

@@ -20,9 +20,9 @@ AltaUsuario::~AltaUsuario() {
 }
 
 void AltaUsuario::altaUsuario() {
+    cout << "--- Alta de Usuario ---" << endl << endl;
     string nick;
 
-    cout << "--- Alta de Usuario ---" << endl;
     cout << "Ingrese nickname: ";
     cin >> nick;
 
@@ -44,7 +44,7 @@ DTOUsuario* AltaUsuario::registroUsuario(string nick) {
     string pass, ciudad, calle, rut;
     int tipo, dia, mes, anio, puerta;
 
-    cout << "Ingrese contraseña: ";
+    cout << "Ingrese contraseña (largo minimo de 6 caracteres): ";
     cin >> pass;
     while (pass.length() < 6) {
         cout << "Contraseña demasiado corta. Reintente: ";
