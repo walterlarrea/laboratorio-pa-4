@@ -22,6 +22,7 @@ void ConsultarPromocion::consultarPromocion() {
 
     string promoSeleccionada;
 
+    cin.ignore();
     do {
 
       listarPromociones(promociones);
@@ -29,7 +30,6 @@ void ConsultarPromocion::consultarPromocion() {
       cout << "Ingrese el nombre de la promocion:" << endl;
       cout << "[Salir = 0]" << endl;
 
-      cin.ignore();
       getline(cin, promoSeleccionada);
 
       if (promoSeleccionada == "0") {

@@ -45,5 +45,5 @@ void DTOPromocion::addProdPromo(DTOProdPromo* prodPromo) {
  }
 
 string DTOPromocion::toString() {
-   return this->nombre + " - " +  this->descripcion + " - " + to_string(this->descuento) + " - " + this->fechaVencimiento->toString();
+   return this->nombre + " - " + this->descripcion + " - " + to_string(this->descuento) + " - " + this->fechaVencimiento->toString();
  }
