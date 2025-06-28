@@ -19,6 +19,8 @@ EnviarProducto::EnviarProducto() {
  }
 
 void EnviarProducto::enviarProducto() {
+  cout << "--- Enviar Producto ---" << endl << endl;
+
   DTOVendedor* vendedorSel = ingresarVendedor();
 
   if (vendedorSel == nullptr) {

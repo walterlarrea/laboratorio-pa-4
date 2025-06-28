@@ -1,6 +1,6 @@
 #include "ConsultarPromocion.h"
 #include "../negocio/controller/promocion/IPromocionController.h"
-#include <limits>8
+#include <limits>
 
 
 ConsultarPromocion::ConsultarPromocion() {
@@ -29,7 +29,8 @@ void ConsultarPromocion::consultarPromocion() {
       cout << "Ingrese el nombre de la promocion:" << endl;
       cout << "[Salir = 0]" << endl;
 
-      cin >> promoSeleccionada;
+      cin.ignore();
+      getline(cin, promoSeleccionada);
 
       if (promoSeleccionada == "0") {
         salir = true;
@@ -50,7 +51,7 @@ void ConsultarPromocion::consultarPromocion() {
 
 void ConsultarPromocion::listarPromociones(map<string, DTOPromocion*> promociones) {
 
-  cout << endl << "Prociones vigentes: " << endl;
+  cout << endl << "Promociones vigentes: " << endl;
 
   for (auto& par : promociones) {
 
@@ -62,8 +63,8 @@ void ConsultarPromocion::listarPromociones(map<string, DTOPromocion*> promocione
 void ConsultarPromocion::listarPromoSeleccionada(DTOPromocion* promo) {
   cout << endl << "- Datos de la promocion -" << endl;
 
-  cout << promo->toString() << endl;
-  cout << "Vendedor: " << promo->getVendedor() << endl;
+  cout << promo->toString() << endl << endl;
+  cout << "Vendedor: " << promo->getVendedor() << endl << endl;
 
   cout << "- Productos de la promo -" << endl;
 

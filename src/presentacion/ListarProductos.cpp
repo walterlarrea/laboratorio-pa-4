@@ -16,6 +16,8 @@ ListarProductos::~ListarProductos() {
 }
 
 void ListarProductos::listarProductos() {
+  cout << "--- Listar Productos ---" << endl << endl;
+
   set<DTOProducto*> productos = this->iproducto->obtenerProductos();
 
   if (productos.size() > 0) {

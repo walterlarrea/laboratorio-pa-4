@@ -22,10 +22,12 @@ AltaProducto::~AltaProducto() {
 }
 
 void AltaProducto::altaProducto() {
+  cout << "--- Alta Producto ---" << endl << endl;
 
   DTOVendedor* vendedor = ingresarVendedor();
 
   if (vendedor != nullptr) {
+    cout << endl << endl << "Datos del producto:" << endl << endl;
     string codigo;
     cout << "Ingrese codigo:"<< endl;
     cin >> codigo;
@@ -52,25 +54,25 @@ DTOVendedor* AltaProducto::ingresarVendedor() {
   string nickVendedor = "";
 
   if (!nombreVendedores.empty()) {
-    cout << "Lista de vendedores " << endl;
+    cout << "Vendedores en el sistema " << endl << endl;
 
     for (const string& nom : nombreVendedores) {
       cout << nom << endl;
     }
 
     while (!nombreVendedores.contains(nickVendedor)) {
-      cout << "Escriba el nombre del vendedor deseado: ";
+      cout << "Escriba el nombre del vendedor para asociar al nuevo producto: ";
       cin >> nickVendedor;
 
       if (!nombreVendedores.contains(nickVendedor)) {
-        cout << "Nombre erroneo, intente nuevamente" << endl;
+        cout << endl << "Nombre erroneo, intente nuevamente" << endl;
       }
     }
 
     vendedor = this->iusuario->getVendedor(nickVendedor);
 
   } else {
-    cout << "No hay vendedores en el sistema." << endl;
+    cout << endl << "No hay vendedores en el sistema." << endl;
   }
 
   return vendedor;
@@ -84,7 +86,8 @@ DTOProducto* AltaProducto::ingresarProducto(string codigo, DTOVendedor* vendedor
   int cat;
 
   cout << "Ingresar nombre:" << endl;
-  cin >> nombre;
+  cin.ignore();
+  getline(cin, nombre);
   cout << "Ingresar descripcion:" << endl;
   cin.ignore();
   getline(cin, descr);
@@ -95,18 +98,18 @@ DTOProducto* AltaProducto::ingresarProducto(string codigo, DTOVendedor* vendedor
 
   map<int, string>* categorias = ECatProducto::getCategorias();
   do {
-    cout << "Ingresar numero de categoria:" << endl;
+    cout << "Categorias:" << endl << endl;
 
     map<int, string>::iterator it;
     for (it = categorias->begin(); it != categorias->end(); ++it) {
       cout << it->first << " - " << it->second << endl;
     }
 
-    cout << endl << "Categoria:" << endl;
+    cout << endl << "Ingrese el numero de categoria del nuevo producto:" << endl;
     cin >> cat;
 
     if (!ECatProducto::verificarCategoria(cat)) {
-      cout << "La categoria seleccionada no existe. Seleccione una diferente" << endl;
+      cout << endl << "La categoria seleccionada no existe. Seleccione una diferente" << endl;
     }
   } while (!ECatProducto::verificarCategoria(cat));
 

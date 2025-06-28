@@ -19,8 +19,7 @@ Sistema* Sistema::getInstance() {
 }
 
 void Sistema::inicializarDatos() {
-  //inicializo el sistema
-  cout << "Comienza inicializacion Sistema " << endl;
+  // cout << "Comienza inicializacion Sistema " << endl;
 
   // Crear instancias y agregarlas a listas globales
 
@@ -75,5 +74,5 @@ void Sistema::inicializarDatos() {
   this->productos.insert(pair(prod3->getCodigo(), prod3));
   this->productos.insert(pair(prod4->getCodigo(), prod4));
 
-  cout << "Fin inicializacion Sistema " << endl;
+  // cout << "Fin inicializacion Sistema " << endl;
 }

@@ -16,8 +16,9 @@ ListarUsuarios::~ListarUsuarios() {
 }
 
 void ListarUsuarios::listarUsuarios() {
-    std::set<DTOUsuario*> usuarios = this->iusuario->listarUsuarios();
+    cout << "--- Listar Usuarios ---" << endl << endl;
 
+    std::set<DTOUsuario*> usuarios = this->iusuario->listarUsuarios();
 
     if (usuarios.size() > 0) {
         cout << "Estos son todos los usuarios registrados en el sistema:" << endl << endl;

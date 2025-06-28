@@ -29,6 +29,8 @@ RealizarCompra::~RealizarCompra() {
 }
 
 void RealizarCompra::realizarCompra() {
+  cout << "--- Realizar Compra ---" << endl << endl;
+
   if (this->iusuario->getClientesNick().size() == 0) {
     cout << "No existen usuarios registrados en el sistema." << endl << endl;
     return;
@@ -37,6 +39,10 @@ void RealizarCompra::realizarCompra() {
   this->ingresarCliente();
 
   set<DTOProdCantidad*> prodsCantidad = this->ingresarProductosCompra();
+
+  if (prodsCantidad.empty()) {
+    cout << endl << "No se ingresaron productos. Compra cancelada." << endl << endl;
+  }
 
   this->mostrarDetallesCompra(prodsCantidad);
 
@@ -94,8 +100,10 @@ set<DTOProdCantidad*> RealizarCompra::ingresarProductosCompra() {
     if (ingresarProducto == 1) {
       string codigoSelec;
       int cantSelec;
-      cout << endl << "Ingrese el codigo de producto seguido por la cantidad deseada: ";
-      cin >> codigoSelec >> cantSelec;
+      cout << endl << "Ingrese el codigo de producto para agregar a la compra: ";
+      cin >> codigoSelec;
+      cout << endl << "Ingrese la cantidad deseada del producto seleccionado anteriormente: ";
+      cin >> cantSelec;
 
       if (prodsCantidadMap.contains(codigoSelec)) {
         cout << endl << "Error: No se puede ingresar un mismo producto mas de una vez." << endl << endl;
@@ -122,16 +130,11 @@ void RealizarCompra::mostrarDetallesCompra(set<DTOProdCantidad*> prodsCantidad) 
     precioTotal += producto->getProducto()->getPrecio() * producto->getCantidad();
   }
 
-  // FIXME: Posible repeticion de codigo
-  time_t hoy = time(0);
-  struct tm* infoFecha = localtime(&hoy);
-  char charFecha[10];
-  strftime(charFecha, sizeof(charFecha), "%d/%m/%Y ", infoFecha);
-  string fecha(charFecha);
+  DTFecha* fecha = DTFecha::obtenerFechaActual();
 
   cout << "Detalles de la compra: " << endl << endl;
   cout << setfill('_') << setw(73) << "_" << endl;
-  cout << "Fecha: " << fecha << endl;
+  cout << "Fecha: " << fecha->toString() << endl;
   cout << setfill('-') << setw(73) << "-" << endl;
 
   int numLinea = 1;

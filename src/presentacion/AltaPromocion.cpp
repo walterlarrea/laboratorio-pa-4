@@ -22,7 +22,7 @@ AltaPromocion::~AltaPromocion() {
 }
 
 void AltaPromocion::altaPromocion() {
-  cout << "--- Alta de Promocion ---" << endl;
+  cout << "--- Crear de Promocion ---" << endl << endl;
 
   DTOPromocion* promocion = ingresarPromocion();
 
@@ -52,16 +52,14 @@ DTOPromocion* AltaPromocion::ingresarPromocion() {
   int dia, mes, anio;
 
   cout << "Ingresar nombre:" << endl;
-  cin.clear();
   cin.ignore();
   getline(cin, nombre);
   cout << "Ingresar descripcion:" << endl;
-  cin.clear();
   cin.ignore();
   getline(cin, descr);
-  cout << "Ingresar descuento:" << endl;
+  cout << "Ingresar % de descuento para los productos en la promocion:" << endl;
   cin >> desc;
-  cout << "Ingresar fecha de vencimiento:" << endl;
+  cout << "Ingresar fecha de vencimiento (dia mes anio):" << endl;
   cin >> dia >> mes >> anio;
   DTFecha* fechaVenc = new DTFecha(dia, mes, anio);
 
@@ -106,13 +104,13 @@ void AltaPromocion::ingresarProdPromos(DTOPromocion* promocion, map<string, DTOP
       cout << producto.second->getCodigo() << " - " << producto.second->getNombre() << endl;
     }
 
-    cout << endl << "Ingrese el codigo del producto: " << endl;
+    cout << endl << "Ingrese el codigo del producto para agregar a la promocion: " << endl;
     cin >> prodSeleccionado;
 
     if (!productos.contains(prodSeleccionado)){
       cout<< "Codigo invalido, intente nuevamente" << endl ;
     } else {
-      cout << endl << "Ingrese la cantidad: " << endl;
+      cout << endl << "Ingrese la cantidad minima necesaria para que se aplique el descuento: " << endl;
       cin >> cant;
 
       promocion->addProdPromo( new DTOProdPromo(productos.find(prodSeleccionado)->second, cant) );

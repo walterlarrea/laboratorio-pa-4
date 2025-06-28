@@ -11,6 +11,8 @@ ListarCategoriasProd::ListarCategoriasProd() = default;
 
 
 void ListarCategoriasProd::listarCategoriasProd() {
+  cout << "--- Listar Categorias de Productos ---" << endl << endl;
+
   map<int, string>* categorias = ECatProducto::getCategorias();
 
   cout << "Todas las categorias de productos:" << endl;
