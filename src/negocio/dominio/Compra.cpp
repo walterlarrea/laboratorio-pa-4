@@ -3,8 +3,14 @@
 
 #include <ctime>
 
-Compra::Compra() = default;
+int Compra::contador = 0;
+
+Compra::Compra() {
+  contador++;
+};
 Compra::Compra(Cliente* cliente, string codigo, DTFecha* fecha) {
+  contador++;
+
   this->codigo = codigo;
   this->fecha = fecha;
   this->cliente = cliente;
@@ -46,3 +52,38 @@ void Compra::setFecha(DTFecha* fecha) {
 void Compra::setCliente(Cliente* cliente) {
   this->cliente = cliente;
 }
+
+void Compra::enviarProducto(string codProd) {
+  for (auto& linea: this->compraProds) {
+    if (linea->codigoProductoEsIgualA(codProd)) {
+      linea->marcarProductoEnviado();
+      break;
+    }
+  }
+}
+
+set<Producto*> Compra::productosConEnvioPendiente(string nickVend) {
+  set<Producto*> productosDelVendedorConEnvioPendiente;
+  for (auto& linea : this->compraProds) {
+    bool esDeInteres = linea->envioPendienteYEsDeVendedor(nickVend);
+    if (esDeInteres) {
+      productosDelVendedorConEnvioPendiente.insert(linea->getProducto());
+    }
+  }
+  return productosDelVendedorConEnvioPendiente;
+}
+
+DTOCompraCliente* Compra::tienePendienteDeEnviar(string codProd) {
+  for (auto& linea : this->compraProds) {
+    bool esDeInteres = linea->envioPendienteYEsProducto(codProd);
+    if (esDeInteres) {
+      return new DTOCompraCliente(this->fecha, this->cliente->getNickName(), this->codigo, this->getMontoFinal());
+      break;
+    }
+  }
+  return nullptr;
+}
+
+int Compra::getContadorCompras() {
+  return contador;
+};

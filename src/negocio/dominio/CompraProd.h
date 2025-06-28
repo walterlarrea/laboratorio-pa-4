@@ -29,6 +29,12 @@ public:
   void setCantidad(int cantidad);
   void setEnviado(bool enviado);
   void setCompra(Compra* compra);
+
+  void marcarProductoEnviado();
+
+  bool codigoProductoEsIgualA(string codProd);
+  bool envioPendienteYEsDeVendedor(string nickVend);
+  bool envioPendienteYEsProducto(string codProd);
 };
 
 

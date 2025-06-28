@@ -11,8 +11,9 @@
 #include "ConsultarPromocion.h"
 #include "ListarProductos.h"
 
-#include "EliminarComentario.h"
 #include "DejarComentario.h"
+#include "EliminarComentario.h"
+#include "EnviarProducto.h"
 
 #include "RealizarCompra.h"
 
@@ -37,6 +38,7 @@ void MenuPpal::mostrarMenu() {
     cout << "9) Consultar Promocion" << endl;
     cout << "10) Realizar Compra" << endl;
     cout << "11) Expediente de Usuario" << endl;
+    cout << "12) Enviar Producto" << endl;
     cout << "0) Salir " << endl;
     cout << "Ingrese una opcion: " << endl;
 
@@ -98,6 +100,11 @@ void MenuPpal::mostrarMenu() {
       case 11: {
         ExpedienteUsuario expedienteUsuario;
         expedienteUsuario.expedienteUsuario();
+      }
+      break;
+      case 12: {
+        EnviarProducto enviarProducto;
+        enviarProducto.enviarProducto();
       }
       break;
       default:

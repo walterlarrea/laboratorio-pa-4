@@ -3,9 +3,10 @@
 #define COMPRA_H
 
 #include "../dt/DTFecha.h"
+#include "../dto/DTOCompraCliente.h"
+#include "Cliente.h"
 #include "CompraProd.h"
 #include "Producto.h"
-#include "Cliente.h"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ private:
   set<CompraProd*> compraProds;
   Cliente* cliente;
 
+  static int contador;
 public:
   Compra();
   Compra(Cliente* cliente, string codigo, DTFecha* fecha);
@@ -36,6 +38,11 @@ public:
   void setFecha(DTFecha* fecha);
   void setCliente(Cliente* cliente);
 
+  void enviarProducto(string codProd);
+  set<Producto*> productosConEnvioPendiente(string nickVend);
+  DTOCompraCliente* tienePendienteDeEnviar(string codProd);
+
+  static int getContadorCompras();
 };
 
 
