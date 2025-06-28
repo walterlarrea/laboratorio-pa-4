@@ -89,7 +89,6 @@ DTOProducto* AltaProducto::ingresarProducto(string codigo, DTOVendedor* vendedor
   cin.ignore();
   getline(cin, nombre);
   cout << "Ingresar descripcion:" << endl;
-  cin.ignore();
   getline(cin, descr);
   cout << "Ingresar stock:" << endl;
   cin >> stock;

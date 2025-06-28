@@ -51,15 +51,14 @@ DTOPromocion* AltaPromocion::ingresarPromocion() {
   double desc;
   int dia, mes, anio;
 
-  cout << "Ingresar nombre:" << endl;
+  cout << "Ingresar nombre: ";
   cin.ignore();
   getline(cin, nombre);
-  cout << "Ingresar descripcion:" << endl;
-  cin.ignore();
+  cout << "Ingresar descripcion: ";
   getline(cin, descr);
-  cout << "Ingresar % de descuento para los productos en la promocion:" << endl;
+  cout << "Ingresar % de descuento para los productos en la promocion: ";
   cin >> desc;
-  cout << "Ingresar fecha de vencimiento (dia mes anio):" << endl;
+  cout << "Ingresar fecha de vencimiento (dia mes anio): ";
   cin >> dia >> mes >> anio;
   DTFecha* fechaVenc = new DTFecha(dia, mes, anio);
 

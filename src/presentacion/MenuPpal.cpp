@@ -38,7 +38,7 @@ void MenuPpal::mostrarMenu() {
     cout << "9) Eliminar Comentario" << endl;
     cout << "10) Enviar Producto" << endl;
     cout << "11) Expediente de Usuario" << endl;
-    cout << "12) Listar Productos - No tiene CU" << endl;
+    // cout << "12) Listar Productos - No tiene CU" << endl;
     cout << "0) Salir " << endl;
     cout << "Ingrese una opcion: " << endl;
 
