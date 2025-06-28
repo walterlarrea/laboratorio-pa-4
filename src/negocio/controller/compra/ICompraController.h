@@ -7,6 +7,10 @@
 #include "../Sistema.h"
 #include "ICompra.h"
 
+#include <map>
+
+using namespace std;
+
 
 class ICompraController:public ICompra {
 private:
@@ -20,6 +24,9 @@ public:
   ~ICompraController();
 
   virtual void altaCompra(set<DTOProdCantidad*> prodsCantidad);
+  virtual map<string, DTOProducto*> productosConEnvioPendiente(string nickVend);
+  virtual set<DTOCompraCliente*> comprasPendientesProducto(string codProd);
+  virtual void enviarProductoCompra(DTOCompraCliente* compraCliente);
 };
 
 

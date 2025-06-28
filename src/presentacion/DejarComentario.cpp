@@ -25,7 +25,7 @@ DejarComentario::~DejarComentario() {
 }
 
 void DejarComentario::dejarComentario() {
-  DTFecha* fecha = obtenerFechaActual();
+  DTFecha* fecha = DTFecha::obtenerFechaActual();
   set<string> usuarios = iusuario->getClientesNick();
 
   if (usuarios.empty()) {

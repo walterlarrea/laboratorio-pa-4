@@ -73,3 +73,7 @@ bool Producto::estaEnPromoVigente() {
   }
   return aux;
 }
+
+bool Producto::vendedorIgualA(string nickVend) {
+  return this->getVendedor()->getNickName() == nickVend;
+}

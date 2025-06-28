@@ -49,3 +49,25 @@ void CompraProd::setEnviado(bool enviado) {
 void CompraProd::setCompra(Compra* compra) {
   this->compra = compra;
 }
+
+void CompraProd::marcarProductoEnviado() {
+  this->enviado = true;
+}
+
+bool CompraProd::codigoProductoEsIgualA(string codProd) {
+  return this->producto->getCodigo() == codProd;
+}
+
+bool CompraProd::envioPendienteYEsDeVendedor(string nickVend) {
+  bool enviado = this->enviado;
+  bool esDeVendedor = this->producto->vendedorIgualA(nickVend);
+
+  return !enviado && esDeVendedor;
+}
+
+bool CompraProd::envioPendienteYEsProducto(string codProd) {
+  bool enviado = this->enviado;
+  bool esProducto = this->producto->getCodigo() == codProd;
+
+  return !enviado && esProducto;
+}

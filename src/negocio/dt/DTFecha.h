@@ -11,6 +11,8 @@ private:
   int dia;
   int mes;
   int anio;
+
+
 public:
 
   DTFecha();
@@ -20,8 +22,9 @@ public:
   string toString();
 
   bool esVigente();
+
+  static DTFecha* obtenerFechaActual();
 };
 
 
-DTFecha* obtenerFechaActual();
 #endif //DTFECHA_H

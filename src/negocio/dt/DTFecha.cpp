@@ -17,7 +17,7 @@ string DTFecha::toString() {
   return "" + to_string(this->dia) + "/" + to_string(this->mes) + "/" + to_string(this->anio);
 }
 
-DTFecha* obtenerFechaActual() {
+DTFecha* DTFecha::obtenerFechaActual() {
   time_t t = time(nullptr);
   tm* now = localtime(&t);
   return new DTFecha(now->tm_mday, now->tm_mon + 1, now->tm_year + 1900);

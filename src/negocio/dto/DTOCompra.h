@@ -24,6 +24,7 @@ public:
   DTFecha* getFecha();
   set<DTCompraProd*> getCompraProds();
   void addCompraProd(DTCompraProd* compraProd);
+
 };
 
 
